@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_custom"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/avatar_default_icon"
+        android:id="@+id/img_avt"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:hint="Full name"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:id="@+id/ed_full_name"
+        android:background="@drawable/edit_text_custom"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_text_custom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:padding="10dp"
+        android:hint="Email"
+        android:id="@+id/ed_email"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_custom"
+        android:text="Update profile"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_update"/>
+
+
+</LinearLayout>

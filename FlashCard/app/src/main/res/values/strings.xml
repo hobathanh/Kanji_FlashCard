@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Kanji Flash Card</string>
+    <string name="sign_up"><u>Sign Up</u>.</string>
+    <string name="sign_in"><u>Sign in</u>.</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_quiz">Quiz</string>
+    <string name="nav_about">About</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_change_pwd">Change Password</string>
+    <string name="nav_sign_out">Sign out</string>
+
+    <string name="nav_drawer_open">Open navigation drawer</string>
+    <string name="nav_drawer_close">Close navigation drawer</string>
+</resources>

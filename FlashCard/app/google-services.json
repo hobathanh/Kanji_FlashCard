@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "919184619212",
+    "project_id": "flash-card-9a006",
+    "storage_bucket": "flash-card-9a006.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919184619212:android:9531541d977a24a05c3469",
+        "android_client_info": {
+          "package_name": "team.loser.kanjiflashcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919184619212-bd3utuu46dbhkm47i5u6f2lcpcta7sif.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "team.loser.kanjiflashcard",
+            "certificate_hash": "6df932c0fccc3cb09d332c17ef11b9511bd0f476"
+          }
+        },
+        {
+          "client_id": "919184619212-3h7jgtu0sr1iuv8gjq3ggq9ug1hrgfnk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_Z2VnIAi6UmlIyrCSfhOX-Xvn3OGFprU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919184619212-3h7jgtu0sr1iuv8gjq3ggq9ug1hrgfnk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
