@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity"
+    android:orientation="vertical"
+    android:background="@drawable/background_custom"
+    android:padding="10dp">
+
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@drawable/log_in"/>
+    <EditText
+        android:id="@+id/ed_email_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="text"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:background="@drawable/edit_text_custom"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="10dp"/>
+    <EditText
+        android:id="@+id/ed_password_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:layout_margin="10dp"
+        android:textColor="#000"
+        android:textColorHint="#000"
+        android:background="@drawable/edit_text_custom"
+        android:padding="10dp"
+        android:drawableStart="@drawable/ic_baseline_vpn_key_24"
+        android:drawablePadding="10dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:textSize="18dp"
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:textColor="#fff"
+        android:background="@drawable/button_custom"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:id="@+id/layout_sign_up">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="Don't have account?"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/tv_sign_up_quest"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:textColor="#fff"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+</LinearLayout>
