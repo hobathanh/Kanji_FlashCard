@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/popup_edit"
+            android:title="@string/popup_edit"
+            android:icon="@drawable/edit_text_custom">
+        </item>
+        <item android:id="@+id/popup_delete"
+            android:title="@string/popup_delete"
+            android:icon="@drawable/ic_baseline_delete_forever_24">
+        </item>
+</menu>

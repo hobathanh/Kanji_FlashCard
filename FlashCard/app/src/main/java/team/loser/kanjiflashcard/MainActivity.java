@@ -32,6 +32,8 @@ import com.google.android.gms.actions.ItemListIntents;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ImageView imgAvt;
     private TextView tvUserEmail, tvUserName;
     private int mCurrentFragment = FRAGMENT_HOME;
+
+    public DatabaseReference reference;
+    private String onlineUserID;
 
     final private ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -106,6 +111,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         imgAvt = mNavigationView.getHeaderView(0).findViewById(R.id.imv_user_avt);
         tvUserEmail = mNavigationView.getHeaderView(0).findViewById(R.id.tv_user_email);
         tvUserName = mNavigationView.getHeaderView(0).findViewById(R.id.tv_user_name);
+
+        onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        reference = FirebaseDatabase.getInstance().getReference().child("cards").child(onlineUserID);
     }
     public void showUserInfoInMenuLeft(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -161,6 +169,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+    private void replaceFragment(Fragment fragment){
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.content_frame, fragment);
+        transaction.commit();
+    }
     @Override
     public void onBackPressed() {
         if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
@@ -168,11 +181,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else {
             super.onBackPressed();
         }
-    }
-    private void replaceFragment(Fragment fragment){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, fragment);
-        transaction.commit();
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
