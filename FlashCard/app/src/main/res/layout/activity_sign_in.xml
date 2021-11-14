@@ -26,7 +26,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
         android:textColor="#000"
-        android:textColorHint="#000"
+
         android:background="@drawable/edit_text_custom"
         android:padding="10dp"
         android:drawableStart="@drawable/ic_baseline_email_24"
@@ -39,7 +39,6 @@
         android:inputType="textPassword"
         android:layout_margin="10dp"
         android:textColor="#000"
-        android:textColorHint="#000"
         android:background="@drawable/edit_text_custom"
         android:padding="10dp"
         android:drawableStart="@drawable/ic_baseline_vpn_key_24"

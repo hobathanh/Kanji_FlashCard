@@ -35,8 +35,7 @@
             android:background="@drawable/edit_text_custom"
             android:textSize="20dp"
             android:padding="10dp"
-            android:textColor="#000"
-            android:textColorHint="#000"/>
+            android:textColor="#000"/>
 
     </LinearLayout>
     <LinearLayout
@@ -56,8 +55,7 @@
             android:background="@drawable/edit_text_custom"
             android:textSize="20dp"
             android:padding="10dp"
-            android:textColor="#000"
-            android:textColorHint="#000"/>
+            android:textColor="#000"/>
 
     </LinearLayout>
     <LinearLayout

@@ -148,12 +148,12 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onClickUpdateItem(Category category) {
-
+                onClickUpdateCategory(category);
             }
 
             @Override
             public void onClickDeleteItem(Category category) {
-                onClickDeleteData(category);
+                onClickDeleteCategory(category);
             }
         });
 
@@ -181,7 +181,7 @@ public class HomeFragment extends Fragment {
             }
         });
     }
-    private void onClickDeleteData(Category category){
+    private void onClickDeleteCategory(Category category){
         new AlertDialog.Builder(getContext())
                 .setTitle("Delete")
                 .setMessage("You gonna delete that shit?")
@@ -200,4 +200,53 @@ public class HomeFragment extends Fragment {
                 .show();
 
     }
+    private void onClickUpdateCategory(Category category){
+        Dialog editDialog = new Dialog(getContext());
+        editDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        editDialog.setContentView(R.layout.edit_category_dialog);
+
+        EditText edCateName = editDialog.findViewById(R.id.ed_category_name_edit);
+        EditText edDescription = editDialog.findViewById(R.id.ed_category_description_edit);
+        Button btnCancel = editDialog.findViewById(R.id.btn_cancel_edit);
+        Button btnUpdate = editDialog.findViewById(R.id.btn_update_category_edit);
+
+        edCateName.setText(category.getName());
+        edCateName.setSelection(category.getName().length());
+        edDescription.setText(category.getDescription());
+        edDescription.setSelection(category.getDescription().length());
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editDialog.dismiss();
+            }
+        });
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String cateName = edCateName.getText().toString().trim();
+                String desc = edDescription.getText().toString().trim();
+                String timeStamp = new SimpleDateFormat("dd-MM-yyy HH:mm:ss").format(new Date());
+                Category newCategory = new Category(category.getId(), cateName,desc,timeStamp);
+                loader.setMessage("Updating...");
+                loader.setCanceledOnTouchOutside(false);
+                loader.show();
+                mMainActivity.reference.child(category.getId()).setValue(newCategory).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(getActivity(), "update successful!", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            String err = task.getException().toString();
+                            Toast.makeText(getActivity(), "update failed!", Toast.LENGTH_SHORT).show();
+                        }
+                        loader.dismiss();
+                    }
+                });
+                editDialog.dismiss();
+            }
+        });
+        editDialog.show();
+    }
+
 }
