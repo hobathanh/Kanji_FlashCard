@@ -167,7 +167,7 @@ public class HomeFragment extends Fragment {
         mMainActivity.reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                mListCategories.clear();
+                if(mListCategories!= null) mListCategories.clear();
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     Category category = dataSnapshot.getValue(Category.class);
                     mListCategories.add(category);
