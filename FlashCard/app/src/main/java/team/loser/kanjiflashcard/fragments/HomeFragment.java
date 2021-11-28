@@ -26,6 +26,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -44,8 +45,8 @@ import team.loser.kanjiflashcard.models.Category;
 import team.loser.kanjiflashcard.utils.SpacingItemDecorator;
 
 public class HomeFragment extends Fragment {
-    private MainActivity mMainActivity;
     private View mView;
+    private DatabaseReference userReference;
 
 
 
@@ -54,13 +55,11 @@ public class HomeFragment extends Fragment {
     private List<Category> mListCategories;
     private FloatingActionButton btnAddCategory;
     private ProgressDialog loader;
-    private String key = "", Category, description;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
-        mMainActivity = (MainActivity)getActivity();
         setControls();
         setEvents();
         getListCategoriesFromRealtimeDataBase();
@@ -97,7 +96,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 String categoryName = edCategoryName.getText().toString().trim();
                 String description = edDescription.getText().toString().trim();
-                String categoryId = mMainActivity.reference.push().getKey();
+                String categoryId = userReference.push().getKey();
                 String timeStamp = new SimpleDateFormat("dd-MM-yyy HH:mm:ss").format(new Date());
                 if(categoryName.isEmpty()){
                     edCategoryName.setError("Category name is required");
@@ -111,7 +110,7 @@ public class HomeFragment extends Fragment {
                 loader.show();
                 Category newCategory = new Category(categoryId, categoryName, description, timeStamp);
 
-                mMainActivity.reference.child(categoryId).setValue(newCategory).addOnCompleteListener(new OnCompleteListener<Void>() {
+                userReference.child(categoryId).setValue(newCategory).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
@@ -140,11 +139,11 @@ public class HomeFragment extends Fragment {
         linearLayoutManager.setStackFromEnd(true);
         rcvCategories.setHasFixedSize(true);
         rcvCategories.setLayoutManager(linearLayoutManager);
-        SpacingItemDecorator itemDecorator = new SpacingItemDecorator(20);
+        SpacingItemDecorator itemDecorator = new SpacingItemDecorator(20, true, false);
         rcvCategories.addItemDecoration(itemDecorator);
 
         mListCategories = new ArrayList<>();
-        mCategoryAdapter = new CategoryAdapter(mListCategories,new CategoryAdapter.IClickListener(){
+        mCategoryAdapter = new CategoryAdapter(mListCategories, new CategoryAdapter.IClickListener(){
 
             @Override
             public void onClickUpdateItem(Category category) {
@@ -155,29 +154,67 @@ public class HomeFragment extends Fragment {
             public void onClickDeleteItem(Category category) {
                 onClickDeleteCategory(category);
             }
+
+            @Override
+            public void onClickAddCard(Category category) {
+                DatabaseReference categoryReference = userReference.child(category.getId());
+                ((MainActivity)getActivity()).showCardsFragment(categoryReference);
+            }
         });
 
         rcvCategories.setAdapter(mCategoryAdapter);
 
         loader = new ProgressDialog(getContext());
         btnAddCategory = mView.findViewById(R.id.btn_add_category);
+        userReference = ((MainActivity)getActivity()).reference;
     }
 
     private void getListCategoriesFromRealtimeDataBase(){
-        mMainActivity.reference.addValueEventListener(new ValueEventListener() {
+
+        userReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(mListCategories!= null) mListCategories.clear();
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Category category = dataSnapshot.getValue(Category.class);
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Category category = snapshot.getValue(Category.class);
+                if(category != null){
                     mListCategories.add(category);
+                    mCategoryAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Category category = snapshot.getValue(Category.class);
+                if( category==null || mListCategories.isEmpty() || mListCategories == null) return;
+                for(int i=0; i <mListCategories.size(); i++){
+                    if(category.getId() == mListCategories.get(i).getId()){
+                        mListCategories.set(i, category);
+                        break;
+                    }
                 }
                 mCategoryAdapter.notifyDataSetChanged();
             }
 
             @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                Category category = snapshot.getValue(Category.class);
+                if( category==null || mListCategories.isEmpty() || mListCategories == null) return;
+                for(int i=0; i <mListCategories.size(); i++){
+                    if(category.getId() == mListCategories.get(i).getId()){
+                        mListCategories.remove( mListCategories.get(i));
+                        break;
+                    }
+                }
+                mCategoryAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "get data failed", Toast.LENGTH_SHORT).show();
+
             }
         });
     }
@@ -188,7 +225,7 @@ public class HomeFragment extends Fragment {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        mMainActivity.reference.child(category.getId()).removeValue(new DatabaseReference.CompletionListener() {
+                        userReference.child(category.getId()).removeValue(new DatabaseReference.CompletionListener() {
                             @Override
                             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                                 Toast.makeText(getContext(), "delete successful", Toast.LENGTH_SHORT).show();
@@ -230,7 +267,7 @@ public class HomeFragment extends Fragment {
                 loader.setMessage("Updating...");
                 loader.setCanceledOnTouchOutside(false);
                 loader.show();
-                mMainActivity.reference.child(category.getId()).setValue(newCategory).addOnCompleteListener(new OnCompleteListener<Void>() {
+                userReference.child(category.getId()).setValue(newCategory).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){

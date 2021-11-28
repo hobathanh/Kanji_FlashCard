@@ -10,14 +10,22 @@
 
     <LinearLayout
         android:id="@+id/layout_options"
-        android:layout_width="150dp"
+        android:layout_width="230dp"
         android:layout_height="match_parent"
         android:background="@drawable/rounded_corner_right">
             <ImageButton
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:src="@drawable/add_card"
+                android:id="@+id/btn_add_card_category_item"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:background="@android:color/transparent"/>
+            <ImageButton
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:src="@drawable/edit"
-                android:id="@+id/btn_edit"
+                android:id="@+id/btn_edit_category_item"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
                 android:background="@android:color/transparent"/>
@@ -25,10 +33,9 @@
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:src="@drawable/remove"
-                android:id="@+id/btn_remove"
+                android:id="@+id/btn_remove_category_item"
                 android:scaleType="fitXY"
                 android:layout_gravity="center"
-
                 android:background="@android:color/transparent"/>
 <!--        <TextView-->
 <!--            android:id="@+id/tv_edit"-->

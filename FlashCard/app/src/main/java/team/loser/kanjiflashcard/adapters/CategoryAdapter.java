@@ -31,6 +31,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public interface IClickListener{
         void onClickUpdateItem(Category category);
         void onClickDeleteItem(Category category);
+        void onClickAddCard(Category category);
     }
 
     public CategoryAdapter(List<Category> mListCategories, IClickListener iClickListener) {
@@ -74,6 +75,12 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 mIClickListener.onClickDeleteItem(category);
             }
         });
+        holder.btnAddCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mIClickListener.onClickAddCard(category);
+            }
+        });
     }
 
 
@@ -89,7 +96,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         private TextView tvDayCount, tvTimeStamp,tvCateName, tvNumOfCards, tvDescription;
         private SwipeRevealLayout swipeRevealLayout;
         private TextView tvEdit, tvDelete;
-        private ImageButton btnEdit, btnRemove;
+        private ImageButton btnEdit, btnRemove,btnAddCard;
 
         public CategoryViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -99,8 +106,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
             tvNumOfCards = itemView.findViewById(R.id.tv_number_of_card);
             tvDescription = itemView.findViewById(R.id.tv_description);
             swipeRevealLayout = itemView.findViewById(R.id.swipe_layout);
-            btnEdit = itemView.findViewById(R.id.btn_edit);
-            btnRemove = itemView.findViewById(R.id.btn_remove);
+            btnEdit = itemView.findViewById(R.id.btn_edit_category_item);
+            btnRemove = itemView.findViewById(R.id.btn_remove_category_item);
+            btnAddCard = itemView.findViewById(R.id.btn_add_card_category_item);
         }
     }
     public long countDays(String fromDate)

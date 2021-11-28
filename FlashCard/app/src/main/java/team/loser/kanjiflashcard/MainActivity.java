@@ -37,6 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
+import team.loser.kanjiflashcard.fragments.CardsFragment;
 import team.loser.kanjiflashcard.fragments.HomeFragment;
 import team.loser.kanjiflashcard.fragments.ProfileFragment;
 
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_ABOUT = 2;
     private static final int FRAGMENT_PROFILE = 3;
     private static final int FRAGMENT_PWD = 4;
+    private static final int FRAGMENT_CARDS = 5;
 
     final private ProfileFragment mProfileFragment = new ProfileFragment();
     private NavigationView mNavigationView;
@@ -173,6 +175,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.content_frame, fragment);
         transaction.commit();
+    }
+    public void showCardsFragment(DatabaseReference reference) {
+        if (mCurrentFragment != FRAGMENT_CARDS) {
+            replaceFragment(new CardsFragment(reference));
+            mCurrentFragment = FRAGMENT_CARDS;
+        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
     }
     @Override
     public void onBackPressed() {
