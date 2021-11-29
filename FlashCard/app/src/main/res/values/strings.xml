@@ -15,4 +15,6 @@
 
     <string name="popup_edit">Edit</string>
     <string name="popup_delete">Delete</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

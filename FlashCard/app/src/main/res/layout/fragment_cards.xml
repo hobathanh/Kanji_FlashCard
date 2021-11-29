@@ -4,51 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4B1A85"
     android:orientation="vertical"
-    android:background="#4B1A85">
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    android:weightSum="15">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="15"
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="All Cards:"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:textSize="18dp"/>
-            </LinearLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcv_list_cards_cards_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp" />
-        </LinearLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="15dp"
-            android:src="@drawable/ic_baseline_add_24"
-            android:backgroundTint="@color/white"
-            android:id="@+id/btn_add_card_cards_fragment"/>
+            android:orientation="horizontal">
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="All Cards:"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10"
+                android:textColor="#fff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcv_list_cards_cards_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:scrollbars="vertical" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="5dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/btn_add_card_cards_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_rounded"
+            android:drawableLeft="@drawable/ic_baseline_add_24"
+            android:padding="10dp"
+            android:text="ADD CARD"
+            android:textColor="#fff"
+            android:textSize="16dp" />
+    </LinearLayout>
+
 </LinearLayout>
+
+    <!--    btn_add_card_cards_fragment"-->

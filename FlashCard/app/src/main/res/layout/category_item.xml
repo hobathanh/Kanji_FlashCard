@@ -1,125 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    app:mode="same_level"
-    app:dragEdge="right"
-    android:id="@+id/swipe_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/rounded_corner">
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/category_background"
+    app:dragEdge="right"
+    app:mode="same_level">
 
     <LinearLayout
         android:id="@+id/layout_options"
         android:layout_width="230dp"
         android:layout_height="match_parent"
-        android:background="@drawable/rounded_corner_right">
-            <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/add_card"
-                android:id="@+id/btn_add_card_category_item"
-                android:layout_gravity="center"
-                android:scaleType="fitXY"
-                android:background="@android:color/transparent"/>
-            <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/edit"
-                android:id="@+id/btn_edit_category_item"
-                android:layout_gravity="center"
-                android:scaleType="fitXY"
-                android:background="@android:color/transparent"/>
-            <ImageButton
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@drawable/remove"
-                android:id="@+id/btn_remove_category_item"
-                android:scaleType="fitXY"
-                android:layout_gravity="center"
-                android:background="@android:color/transparent"/>
-<!--        <TextView-->
-<!--            android:id="@+id/tv_edit"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="#42F3D7"-->
-<!--            android:text="Edit"-->
-<!--            android:textSize="20dp"-->
-<!--            android:textStyle="bold"-->
-<!--            android:gravity="center"-->
-<!--            android:textColor="#000" />-->
+        android:background="#D5D5D5">
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_delete"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="#AF73F4"-->
-<!--            android:text="Delete"-->
-<!--            android:textStyle="bold"-->
-<!--            android:gravity="center"-->
-<!--            android:textSize="20dp"-->
-<!--            android:textColor="#000"-->
-<!--            android:layout_marginRight="7dp"/>-->
+        <ImageButton
+            android:id="@+id/btn_add_card_category_item"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/add_card" />
+
+        <ImageButton
+            android:id="@+id/btn_edit_category_item"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/edit" />
+
+        <ImageButton
+            android:id="@+id/btn_remove_category_item"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/remove" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_marginLeft="7dp"
-            android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:background="@color/white"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <RelativeLayout
-                        android:layout_width="0dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:id="@+id/tv_day_count"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2">
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="5"
+                        android:text="5" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/tv_day_count"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:text="5" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="5dp"
-                                android:text=" days ago" />
-                        </LinearLayout>
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tv_timestamp"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2">
-
-                        <TextView
-                            android:id="@+id/tv_timestamp"
-                            android:layout_width="200dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="2dp"
-                            android:gravity="left"
-                            android:padding="2dp"
-                            android:text="Nov 1, 2021"
-                            android:textSize="12dp"
-                            android:textStyle="bold" />
-                    </RelativeLayout>
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_weight="5"
+                        android:gravity="center"
+                        android:padding="2dp"
+                        android:text="Nov 1, 2021"
+                        android:textSize="12dp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <TextView
@@ -135,57 +101,77 @@
                     android:padding="5dp"
                     android:text="Category name"
                     android:textColor="#000"
-                    android:textSize="18dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="10"
                         android:layout_marginLeft="5dp"
-                        android:textSize="12dp"
-                        android:textColor="#000"
-                        android:maxLines="2"
-                        android:id="@+id/tv_number_of_card"/>
-                    <TextView
-                        android:id="@+id/tv_cards_or_card"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="cards"
-                        android:textSize="12dp"
-                        android:layout_marginLeft="5dp"
-                        android:textColor="#000"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:padding="2dp"
                         android:text="Desription:"
-                        android:textSize="15dp"
                         android:textColor="#000"
-                        android:layout_marginLeft="5dp"/>
+                        android:textSize="15dp" />
+
                     <TextView
+                        android:id="@+id/tv_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:maxLines="2"
                         android:padding="2dp"
                         android:text="Desription here"
-                        android:textSize="15dp"
                         android:textColor="#000"
-                        android:maxLines="2"
-                        android:id="@+id/tv_description"/>
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_cards_or_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="0"
+                    android:textColor="#000"
+                    android:textSize="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:weightSum="5">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_review_or_add_category_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_rounded_transparent"
+                        android:text="REVIEW"
+                        android:textColor="#9438ff"
+                        android:textSize="18dp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_practice_category_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_rounded_transparent"
+                        android:text="PRACTICE"
+                        android:textColor="#9438ff"
+                        android:textSize="18dp" />
                 </LinearLayout>
 
 

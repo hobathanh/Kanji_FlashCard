@@ -1,5 +1,7 @@
 package team.loser.kanjiflashcard.adapters;
 
+import static team.loser.kanjiflashcard.MainActivity.onlineUserID;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chauthai.swipereveallayout.SwipeRevealLayout;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -101,4 +105,5 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         backLayoutParams.height = max;
         front.setLayoutParams(backLayoutParams);
     }
+
 }

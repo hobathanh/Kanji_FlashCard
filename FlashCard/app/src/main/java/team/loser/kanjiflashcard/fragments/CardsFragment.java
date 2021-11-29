@@ -48,7 +48,7 @@ public class CardsFragment extends Fragment {
     private RecyclerView rcvCards;
     private CardAdapter mCardAdapter;
     private List<Card> mListCards;
-    private FloatingActionButton btnAddCard;
+    private Button btnAddCard;
     private ProgressDialog loader;
 
     public static CardsFragment newInstance(DatabaseReference reference) {
@@ -267,7 +267,6 @@ public class CardsFragment extends Fragment {
         ImageButton btnCloseDialog = dialog.findViewById(R.id.btn_close_dialog_card_detail);
         ImageButton btnOk = dialog.findViewById(R.id.btn_ok_card_detail_dialog);
         Button btnAddNextCard = dialog.findViewById(R.id.btn_add_next_card_card_detail_dialog);
-
         btnCloseDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

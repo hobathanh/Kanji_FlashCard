@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private int mCurrentFragment = FRAGMENT_HOME;
 
     public DatabaseReference reference;
-    private String onlineUserID;
+    public static String onlineUserID;
 
     final private ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance().getReference().child("cards").child(onlineUserID);
+
     }
     public void showUserInfoInMenuLeft(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
