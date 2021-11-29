@@ -19,16 +19,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.gms.actions.ItemListIntents;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
+import team.loser.kanjiflashcard.fragments.AboutFragment;
 import team.loser.kanjiflashcard.fragments.CardsFragment;
 import team.loser.kanjiflashcard.fragments.HomeFragment;
 import team.loser.kanjiflashcard.fragments.ProfileFragment;
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private TextView tvUserEmail, tvUserName;
     private int mCurrentFragment = FRAGMENT_HOME;
 
-    public DatabaseReference reference;
+    public static DatabaseReference reference;
     public static String onlineUserID;
 
     final private ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
@@ -101,9 +99,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         mNavigationView.setNavigationItemSelectedListener(this);
 
-        replaceFragment(new HomeFragment());
-        mNavigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
-        mCurrentFragment = FRAGMENT_HOME;
+
 
         showUserInfoInMenuLeft();
     }
@@ -116,6 +112,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         onlineUserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         reference = FirebaseDatabase.getInstance().getReference().child("cards").child(onlineUserID);
+
+        //transaction fragments
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.content_frame, new HomeFragment());
+        fragmentTransaction.commit();
+        mNavigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
+        mCurrentFragment = FRAGMENT_HOME;
+    }
+    // go to Cards Fragment
+    public void goToCardsFragment(DatabaseReference categoryRef){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        CardsFragment cardsFragment = new CardsFragment(categoryRef);
+        fragmentTransaction.replace(R.id.content_frame, cardsFragment);
+        fragmentTransaction.addToBackStack(cardsFragment.CARDS_FRAGMENT_NAME);
+        fragmentTransaction.commit();
 
     }
     public void showUserInfoInMenuLeft(){
@@ -150,7 +161,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if(id == R.id.nav_about){
-
+            replaceFragment(new AboutFragment());
+            mCurrentFragment = FRAGMENT_ABOUT;
         }
         else if(id == R.id.nav_profile){
             if(mCurrentFragment != FRAGMENT_PROFILE){

@@ -44,6 +44,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         void onClickUpdateItem(Category category);
         void onClickDeleteItem(Category category);
         void onClickAddCard(Category category);
+        void onClickItemCategory(DatabaseReference categoryRef);
+        void onClickStartQuizActivity(Category category);
     }
 
     public CategoryAdapter(List<Category> mListCategories, IClickListener iClickListener) {
@@ -101,6 +103,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 if(holder.btnReview_Add.getText() == "ADD CARDS"){
                     mIClickListener.onClickAddCard(category);
                 }
+                else{
+                    mIClickListener.onClickStartQuizActivity(category);
+                }
+            }
+        });
+        holder.tvCateName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mIClickListener.onClickItemCategory(mUserReference.child(category.getId()));
             }
         });
     }

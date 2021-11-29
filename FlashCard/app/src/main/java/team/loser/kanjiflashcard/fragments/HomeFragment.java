@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ import java.util.Date;
 import java.util.List;
 
 import team.loser.kanjiflashcard.MainActivity;
+import team.loser.kanjiflashcard.QuizActivity;
 import team.loser.kanjiflashcard.R;
 import team.loser.kanjiflashcard.adapters.CategoryAdapter;
 import team.loser.kanjiflashcard.models.Category;
@@ -55,6 +57,9 @@ public class HomeFragment extends Fragment {
     private List<Category> mListCategories;
     private FloatingActionButton btnAddCategory;
     private ProgressDialog loader;
+
+    public HomeFragment() {
+    }
 
     @Nullable
     @Override
@@ -143,7 +148,7 @@ public class HomeFragment extends Fragment {
         rcvCategories.addItemDecoration(itemDecorator);
 
         mListCategories = new ArrayList<>();
-        mCategoryAdapter = new CategoryAdapter(mListCategories, new CategoryAdapter.IClickListener(){
+        mCategoryAdapter = new CategoryAdapter(mListCategories, new  CategoryAdapter.IClickListener(){
 
             @Override
             public void onClickUpdateItem(Category category) {
@@ -159,6 +164,18 @@ public class HomeFragment extends Fragment {
             public void onClickAddCard(Category category) {
                 DatabaseReference categoryReference = userReference.child(category.getId());
                 ((MainActivity)getActivity()).showCardsFragment(categoryReference);
+            }
+
+            @Override
+            public void onClickItemCategory(DatabaseReference categoryRef) {
+                ((MainActivity)getActivity()).goToCardsFragment(categoryRef);
+            }
+
+            @Override
+            public void onClickStartQuizActivity(Category category) {
+                Intent intent = new Intent(getContext(), QuizActivity.class);
+                intent.putExtra("CATEGORY_ID", category.getId());
+                startActivity(intent);
             }
         });
 

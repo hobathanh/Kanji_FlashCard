@@ -12,25 +12,20 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +33,9 @@ import java.util.List;
 import team.loser.kanjiflashcard.R;
 import team.loser.kanjiflashcard.adapters.CardAdapter;
 import team.loser.kanjiflashcard.models.Card;
-import team.loser.kanjiflashcard.models.Category;
-import team.loser.kanjiflashcard.utils.SpacingItemDecorator;
 
 public class CardsFragment extends Fragment {
+    public static final String CARDS_FRAGMENT_NAME = CardsFragment.class.getName();
     private View mView;
     private DatabaseReference flashcardsReference, categoryReference;
 
@@ -67,7 +61,6 @@ public class CardsFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
     }
-
 
     @Nullable
     @Override

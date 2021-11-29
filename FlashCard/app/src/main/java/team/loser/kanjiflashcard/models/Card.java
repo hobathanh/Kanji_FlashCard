@@ -50,4 +50,15 @@ public class Card {
     public void setExamples(String examples) {
         this.examples = examples;
     }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "id='" + id + '\'' +
+                ", term='" + term + '\'' +
+                ", definition='" + definition + '\'' +
+                ", howtoread='" + howtoread + '\'' +
+                ", examples='" + examples + '\'' +
+                '}';
+    }
 }
