@@ -17,7 +17,7 @@
         app:flipEnabled="true"
         app:flipType="horizontal"
         app:autoFlipBack="true"
-        app:autoFlipBackTime="10000"
+        app:autoFlipBackTime="5000"
         >
 <!--Back-->
         <androidx.cardview.widget.CardView

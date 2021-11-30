@@ -129,24 +129,18 @@ public class QuizActivity extends AppCompatActivity {
         }
         else{
             //wrong
-//            Toast.makeText(QuizActivity.this, "False", Toast.LENGTH_SHORT).show();
             isFirstChoiceCorrect = false;
-            correctAns--;
             if(selectedOption == 0){
                 btnOption1.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                correctAns++;
             }
             if(selectedOption == 1){
                 btnOption2.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                correctAns++;
             }
             if(selectedOption == 2){
                 btnOption3.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                correctAns++;
             }
             if(selectedOption == 3){
                 btnOption4.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                correctAns++;
             }
         }
     }
@@ -182,7 +176,6 @@ public class QuizActivity extends AppCompatActivity {
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    dialog.dismiss();
                     Intent intent = new Intent(QuizActivity.this, MainActivity.class);
                     finish();
                     startActivity(intent);
@@ -203,7 +196,6 @@ public class QuizActivity extends AppCompatActivity {
                     mListOptions.add(card.getDefinition());
                 }
                 mListQuestions = getQuestionListForQuiz();
-//                Toast.makeText(QuizActivity.this, mListQuestions.size() + "", Toast.LENGTH_SHORT).show();
                 setQuestion(questNum);
             }
 
