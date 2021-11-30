@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -24,10 +26,11 @@ public class SignInActivity extends AppCompatActivity {
     private Button btnSignIn;
     private LinearLayout layoutSignUp;
     private ProgressDialog loader;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_in);
         setControls();
         setEvents();
@@ -44,11 +47,11 @@ public class SignInActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String email = edEmail.getText().toString().trim();
                 String password = edPassword.getText().toString().trim();
-                if(email.isEmpty()){
+                if (email.isEmpty()) {
                     edEmail.setError("email is required");
                     return;
                 }
-                if(password.isEmpty()){
+                if (password.isEmpty()) {
                     edPassword.setError("password is required");
                     return;
                 }
@@ -81,5 +84,26 @@ public class SignInActivity extends AppCompatActivity {
         edEmail = findViewById(R.id.ed_email_sign_in);
         edPassword = findViewById(R.id.ed_password_sign_in);
         btnSignIn = findViewById(R.id.btn_sign_in);
+    }
+
+    boolean doubleBackToExitPressedOnce = false;
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }
