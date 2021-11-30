@@ -37,7 +37,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import team.loser.kanjiflashcard.MainActivity;
 import team.loser.kanjiflashcard.QuizActivity;
@@ -119,12 +121,12 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Add successfully!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Add successfully!", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                         else {
                             String err =  task.getException().toString();
-                            Toast.makeText(getActivity()  , "Add failed! " + err, Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity()  , "Add failed! " + err, Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
 
@@ -161,12 +163,6 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onClickAddCard(Category category) {
-                DatabaseReference categoryReference = userReference.child(category.getId());
-                ((MainActivity)getActivity()).showCardsFragment(categoryReference);
-            }
-
-            @Override
             public void onClickItemCategory(DatabaseReference categoryRef) {
                 ((MainActivity)getActivity()).goToCardsFragment(categoryRef);
             }
@@ -187,7 +183,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void getListCategoriesFromRealtimeDataBase(){
-
         userReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -237,8 +232,8 @@ public class HomeFragment extends Fragment {
     }
     private void onClickDeleteCategory(Category category){
         new AlertDialog.Builder(getContext())
-                .setTitle("Delete")
-                .setMessage("You gonna delete that shit?")
+                .setTitle("Remove Category")
+                .setMessage("Are you sure you want to remove this Category?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -280,11 +275,14 @@ public class HomeFragment extends Fragment {
                 String cateName = edCateName.getText().toString().trim();
                 String desc = edDescription.getText().toString().trim();
                 String timeStamp = new SimpleDateFormat("dd-MM-yyy HH:mm:ss").format(new Date());
-                Category newCategory = new Category(category.getId(), cateName,desc,timeStamp);
+                Map<String, Object> map = new HashMap<>();
+                map.put("name", cateName);
+                map.put("description", desc);
+                map.put("timeStamp", timeStamp);
                 loader.setMessage("Updating...");
                 loader.setCanceledOnTouchOutside(false);
                 loader.show();
-                userReference.child(category.getId()).setValue(newCategory).addOnCompleteListener(new OnCompleteListener<Void>() {
+                userReference.child(category.getId()).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){

@@ -60,21 +60,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     final private ActivityResultLauncher<Intent> mActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if(result.getResultCode() == RESULT_OK){
-                        Intent intent = result.getData();
-                        if(intent == null) return;
+            result -> {
+                if(result.getResultCode() == RESULT_OK){
+                    Intent intent = result.getData();
+                    if(intent == null) return;
 
-                        Uri uri = intent.getData();
-                        mProfileFragment.setUriData(uri);
-                        try {
-                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                            mProfileFragment.setBitmapImageView(bitmap);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                    Uri uri = intent.getData();
+                    mProfileFragment.setUriData(uri);
+                    try {
+                        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                        mProfileFragment.setBitmapImageView(bitmap);
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }
             });

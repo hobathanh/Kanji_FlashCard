@@ -17,7 +17,7 @@
         app:flipEnabled="true"
         app:flipType="horizontal"
         app:autoFlipBack="true"
-        app:autoFlipBackTime="3000"
+        app:autoFlipBackTime="10000"
         >
 <!--Back-->
         <androidx.cardview.widget.CardView
@@ -29,10 +29,17 @@
                 android:id="@+id/layout_options"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#A1FFF0"
+                android:background="#D6B3FD"
                 android:orientation="vertical"
-                >
+                android:padding="10dp">
                 <!--            Examples-->
+                <TextView
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pronunciation:"
+                    android:textColor="#000"
+                    android:textSize="14dp"/>
                 <TextView
                     android:id="@+id/tv_how_to_read_card_item"
                     android:layout_gravity="center"
@@ -40,22 +47,24 @@
                     android:layout_height="wrap_content"
                     android:text="Hello World"
                     android:textColor="#000"
-                    android:textSize="18dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
                 <TextView
                     android:layout_gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Examples:"
                     android:textColor="#000"
-                    android:textSize="16dp"/>
+                    android:textSize="14dp"/>
                 <TextView
-                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:id="@+id/tv_examples_card_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="tabe"
                     android:textColor="#000"
-                    android:textSize="20dp"/>
+                    android:textSize="18dp"
+                    android:textStyle="bold"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 <!--        Front-->
@@ -102,21 +111,32 @@
                     android:orientation="horizontal"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:background="#9449EC">
-
+                    android:background="#9449EC"
+                    android:padding="5dp">
                     <ImageButton
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/edit"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/speaker_card"
+                        android:id="@+id/btn_speaker_card_item"
+                        android:layout_gravity="center"
+                        android:scaleType="fitXY"
+                        android:background="@android:color/transparent"
+                        android:layout_marginRight="10dp"/>
+                    <ImageButton
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/edit_card"
                         android:id="@+id/btn_edit_card_item"
                         android:layout_gravity="center"
                         android:scaleType="fitXY"
                         android:background="@android:color/transparent"/>
                     <ImageButton
                         android:layout_marginLeft="10dp"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:src="@drawable/remove"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/remove_card"
                         android:id="@+id/btn_remove_card_item"
                         android:scaleType="fitXY"
                         android:layout_gravity="center"

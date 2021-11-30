@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.FractionRes;
@@ -80,6 +81,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         private TextView tvTerm, tvDefinition,tvHowToRead, tvExamples;
         private FrameLayout frontCard, backCard;
         private ImageButton btnEdit, btnRemove;
+
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTerm = itemView.findViewById(R.id.tv_term_card_item);
@@ -90,6 +92,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             backCard = itemView.findViewById(R.id.back_card);
             btnEdit = itemView.findViewById(R.id.btn_edit_card_item);
             btnRemove = itemView.findViewById(R.id.btn_remove_card_item);
+
+
         }
     }
     private void setHeightCard(View front, View back){

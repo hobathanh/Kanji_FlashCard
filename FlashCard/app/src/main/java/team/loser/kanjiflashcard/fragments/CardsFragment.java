@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,14 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -26,6 +30,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +49,8 @@ public class CardsFragment extends Fragment {
     private List<Card> mListCards;
     private Button btnAddCard;
     private ProgressDialog loader;
+    private int numOfCards = 0;
+    private TextView tvNumOfCard;
 
     public static CardsFragment newInstance(DatabaseReference reference) {
         CardsFragment fragment = new CardsFragment(reference);
@@ -59,7 +66,6 @@ public class CardsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Nullable
@@ -69,6 +75,7 @@ public class CardsFragment extends Fragment {
         setControls();
         setEvents();
         getListCategoriesFromRealtimeDataBase();
+        getNumberOfCards();
         return mView;
     }
 
@@ -77,10 +84,8 @@ public class CardsFragment extends Fragment {
         btnAddCard = mView.findViewById(R.id.btn_add_card_cards_fragment);
         loader = new ProgressDialog(getContext());
         rcvCards = mView.findViewById(R.id.rcv_list_cards_cards_fragment);
-//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
+        tvNumOfCard = mView.findViewById(R.id.tv_num_of_card_card_fragment);
         rcvCards.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-
-//        rcvCards.addItemDecoration(new SpacingItemDecorator(5, true, true ));
 
         mListCards = new ArrayList<>();
         mCardAdapter = new CardAdapter(mListCards, new CardAdapter.IClickListener() {
@@ -108,41 +113,67 @@ public class CardsFragment extends Fragment {
             }
         });
     }
-    private void getListCategoriesFromRealtimeDataBase(){
+
+    private void getNumberOfCards() {
+        flashcardsReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int count = 0;
+                for (DataSnapshot card : snapshot.getChildren()) {
+                    count++;
+                }
+                if (count < 5) {
+                    Toast.makeText(getContext(), "Please add at least 5 cards", Toast.LENGTH_SHORT).show();
+                    tvNumOfCard.setText(count+"");
+                }
+                tvNumOfCard.setText(count+"");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void getListCategoriesFromRealtimeDataBase() {
         flashcardsReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Card card = snapshot.getValue(Card.class);
-                if(card != null){
+                if (card != null) {
                     mListCards.add(card);
                     mCardAdapter.notifyDataSetChanged();
                 }
+                numOfCards = mListCards.size();
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Card card = snapshot.getValue(Card.class);
-                if( card==null || mListCards.isEmpty() || mListCards == null) return;
-                for(int i=0; i <mListCards.size(); i++){
-                    if(card.getId() == mListCards.get(i).getId()){
+                if (card == null || mListCards.isEmpty() || mListCards == null) return;
+                for (int i = 0; i < mListCards.size(); i++) {
+                    if (card.getId() == mListCards.get(i).getId()) {
                         mListCards.set(i, card);
                         break;
                     }
                 }
                 mCardAdapter.notifyDataSetChanged();
+                numOfCards = mListCards.size();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
                 Card card = snapshot.getValue(Card.class);
-                if( card==null || mListCards.isEmpty() || mListCards == null) return;
-                for(int i=0; i <mListCards.size(); i++){
-                    if(card.getId() == mListCards.get(i).getId()){
-                        mListCards.remove( mListCards.get(i));
+                if (card == null || mListCards.isEmpty() || mListCards == null) return;
+                for (int i = 0; i < mListCards.size(); i++) {
+                    if (card.getId() == mListCards.get(i).getId()) {
+                        mListCards.remove(mListCards.get(i));
                         break;
                     }
                 }
                 mCardAdapter.notifyDataSetChanged();
+                numOfCards = mListCards.size();
             }
 
             @Override
@@ -156,11 +187,12 @@ public class CardsFragment extends Fragment {
             }
         });
     }
+
     //Remove card
-    private void onClickRemoveCard(Card card){
+    private void onClickRemoveCard(Card card) {
         new AlertDialog.Builder(getContext())
-                .setTitle("Delete Card")
-                .setMessage("You gonna delete that shit?")
+                .setTitle("Remove Card")
+                .setMessage("Are you sure you want to remove this Card?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -175,11 +207,14 @@ public class CardsFragment extends Fragment {
                 .setNegativeButton("No", null)
                 .show();
     }
+
     //Edit card
-    private void onCLickEditCard(@NonNull Card card){
-        Dialog dialog=new Dialog(getContext(),android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+    private void onCLickEditCard(@NonNull Card card) {
+        Dialog dialog = new Dialog(getContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_card_detail);
+        TextView edTitle = dialog.findViewById(R.id.dialog_title);
+        edTitle.setText("EDIT CARD");
 
         EditText edTerm = dialog.findViewById(R.id.ed_term_card_detail_dialog);
         EditText edDefinition = dialog.findViewById(R.id.ed_definition_card_detail_dialog);
@@ -204,54 +239,52 @@ public class CardsFragment extends Fragment {
                 dialog.dismiss();
             }
         });
-        btnOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String term = edTerm.getText().toString().trim();
-                String definition = edDefinition.getText().toString().trim();
-                String howtoread = edHowToRead.getText().toString().trim();
-                String examples = edExamples.getText().toString().trim();
-                String cardId = card.getId(); //old id
-                if(term.isEmpty()){
-                    edTerm.setError("Term is required");
-                    return;
-                }
-                if(definition.isEmpty()){
-                    edDefinition.setError("Definition is required");
-                    return;
-                }
-                if(howtoread.isEmpty()) howtoread = "way of reading was not added";
-                if(examples.isEmpty()) howtoread = "examples was not added";
-                loader.setMessage("Updating...");
-                loader.setCanceledOnTouchOutside(false);
-                loader.show();
-                Card updatedCard = new Card(cardId, term, definition, howtoread,examples);
-                flashcardsReference.child(cardId).setValue(updatedCard).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "update successfully!", Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
-                        }
-                        else {
-                            String err =  task.getException().toString();
-                            Toast.makeText(getActivity()  , "update failed! " + err, Toast.LENGTH_LONG).show();
-                            dialog.dismiss();
-                        }
-
-                        loader.dismiss();
-                    }
-                });
+        btnOk.setOnClickListener(view -> {
+            String term = edTerm.getText().toString().trim();
+            String definition = edDefinition.getText().toString().trim();
+            String howtoread = edHowToRead.getText().toString().trim();
+            String examples = edExamples.getText().toString().trim();
+            String cardId = card.getId(); //old id
+            if (term.isEmpty()) {
+                edTerm.setError("Term is required");
+                return;
             }
+            if (definition.isEmpty()) {
+                edDefinition.setError("Definition is required");
+                return;
+            }
+            if (howtoread.isEmpty()) howtoread = "pronunciation was not added";
+            if (examples.isEmpty()) howtoread = "add some examples to learn!";
+            loader.setMessage("Updating...");
+            loader.setCanceledOnTouchOutside(false);
+            loader.show();
+            Card updatedCard = new Card(cardId, term, definition, howtoread, examples);
+            flashcardsReference.child(cardId).setValue(updatedCard).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(getActivity(), "update successfully!", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    } else {
+                        String err = task.getException().toString();
+                        Toast.makeText(getActivity(), "update failed! " + err, Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+
+                    loader.dismiss();
+                }
+            });
         });
         dialog.show();
     }
 
     // Add new card
-    private void addNewCard(){
-        Dialog dialog=new Dialog(getContext(),android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+    private void addNewCard() {
+        Dialog dialog = new Dialog(getContext(), android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_card_detail);
+        TextView edTitle = dialog.findViewById(R.id.dialog_title);
+        edTitle.setText("ADD NEW CARD");
 
         EditText edTerm = dialog.findViewById(R.id.ed_term_card_detail_dialog);
         EditText edDefinition = dialog.findViewById(R.id.ed_definition_card_detail_dialog);
@@ -274,30 +307,29 @@ public class CardsFragment extends Fragment {
                 String howtoread = edHowToRead.getText().toString().trim();
                 String examples = edExamples.getText().toString().trim();
                 String cardId = flashcardsReference.push().getKey();
-                if(term.isEmpty()){
+                if (term.isEmpty()) {
                     edTerm.setError("Term is required");
                     return;
                 }
-                if(definition.isEmpty()){
+                if (definition.isEmpty()) {
                     edDefinition.setError("Definition is required");
                     return;
                 }
-                if(howtoread.isEmpty()) howtoread = "way of reading was not added";
-                if(examples.isEmpty()) examples = "examples was not added";
+                if (howtoread.isEmpty()) howtoread = "way of reading was not added";
+                if (examples.isEmpty()) examples = "examples was not added";
                 loader.setMessage("Adding...");
                 loader.setCanceledOnTouchOutside(false);
                 loader.show();
-                Card newCard = new Card(cardId, term, definition, howtoread,examples);
+                Card newCard = new Card(cardId, term, definition, howtoread, examples);
                 flashcardsReference.child(cardId).setValue(newCard).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Add successfully!", Toast.LENGTH_LONG).show();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getActivity(), "Add successfully!", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
-                        }
-                        else {
-                            String err =  task.getException().toString();
-                            Toast.makeText(getActivity()  , "Add failed! " + err, Toast.LENGTH_LONG).show();
+                        } else {
+                            String err = task.getException().toString();
+                            Toast.makeText(getActivity(), "Add failed! " + err, Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
 
@@ -314,33 +346,32 @@ public class CardsFragment extends Fragment {
                 String howtoread = edHowToRead.getText().toString().trim();
                 String examples = edExamples.getText().toString().trim();
                 String cardId = flashcardsReference.push().getKey();
-                if(term.isEmpty()){
+                if (term.isEmpty()) {
                     edTerm.setError("Term is required");
                     return;
                 }
-                if(definition.isEmpty()){
+                if (definition.isEmpty()) {
                     edDefinition.setError("Definition is required");
                     return;
                 }
                 loader.setMessage("Adding...");
                 loader.setCanceledOnTouchOutside(false);
                 loader.show();
-                Card newCard = new Card(cardId, term, definition, howtoread,examples);
+                Card newCard = new Card(cardId, term, definition, howtoread, examples);
                 flashcardsReference.child(cardId).setValue(newCard).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(getActivity(), "Add successfully!", Toast.LENGTH_LONG).show();
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getActivity(), "Add successfully!", Toast.LENGTH_SHORT).show();
                             edTerm.setText("");
                             edDefinition.setText("");
                             edExamples.setText("");
                             edHowToRead.setText("");
                             edTerm.requestFocus();
 
-                        }
-                        else {
-                            String err =  task.getException().toString();
-                            Toast.makeText(getActivity()  , "Add failed! " + err, Toast.LENGTH_LONG).show();
+                        } else {
+                            String err = task.getException().toString();
+                            Toast.makeText(getActivity(), "Add failed! " + err, Toast.LENGTH_SHORT).show();
                         }
 
                         loader.dismiss();

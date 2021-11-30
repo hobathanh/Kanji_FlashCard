@@ -10,9 +10,10 @@
 
     <LinearLayout
         android:id="@+id/layout_options"
-        android:layout_width="230dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:background="#D5D5D5">
+        android:background="#EFEFEF"
+        android:gravity="center">
 
         <ImageButton
             android:id="@+id/btn_add_card_category_item"
@@ -21,7 +22,8 @@
             android:layout_gravity="center"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/add_card" />
+            android:src="@drawable/add_cate"
+            android:layout_marginRight="10dp"/>
 
         <ImageButton
             android:id="@+id/btn_edit_category_item"
@@ -30,7 +32,9 @@
             android:layout_gravity="center"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/edit" />
+            android:src="@drawable/edit_cate"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
 
         <ImageButton
             android:id="@+id/btn_remove_category_item"
@@ -39,12 +43,13 @@
             android:layout_gravity="center"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/remove" />
+            android:src="@drawable/remove_cate"
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -55,6 +60,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/layout_cate_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -114,7 +120,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -127,18 +134,18 @@
 
                     <TextView
                         android:id="@+id/tv_description"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:maxLines="2"
                         android:padding="2dp"
                         android:text="Desription here"
                         android:textColor="#000"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:layout_weight="2"/>
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_cards_or_card"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:text="0"
@@ -146,6 +153,7 @@
                     android:textSize="12dp" />
 
                 <LinearLayout
+                    android:id="@+id/layout_buttons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"

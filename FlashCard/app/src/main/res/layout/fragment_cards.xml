@@ -38,9 +38,10 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_num_of_card_card_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10"
+                    android:text="0"
                     android:textColor="#fff"
                     android:textSize="18dp"
                     android:textStyle="bold" />
