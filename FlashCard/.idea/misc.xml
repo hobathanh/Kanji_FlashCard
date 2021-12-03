@@ -20,7 +20,7 @@
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_quiz.xml" value="0.2359375" />
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_quiz.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_sign_in2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
@@ -45,17 +45,6 @@
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/menu/menu_nav.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/menu/popup_menu.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/menu/tool_bar_home.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/activity_quiz.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/activity_sign_in.xml" value="0.22" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/dialog_card_detail.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/fragment_about.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/fragment_cards.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/fragment_change_password.xml" value="0.22" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/layout_header_nav.xml" value="0.14739583333333334" />
-        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/menu/menu_nav.xml" value="0.12314814814814815" />
       </map>
     </option>
   </component>

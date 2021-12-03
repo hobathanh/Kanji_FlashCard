@@ -3,17 +3,36 @@ package team.loser.kanjiflashcard.models;
 public class Question {
     private String question, option1, option2, option3, option4;
     private int correctAns;
+    private String howToRead, Examples;
 
-    public Question(String question, String option1, String option2, String option3, String option4, int correctAns) {
+    public Question(String question, String option1, String option2, String option3, String option4, int correctAns, String howToRead, String examples) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
         this.option4 = option4;
         this.correctAns = correctAns;
+        this.howToRead = howToRead;
+        Examples = examples;
     }
 
     public Question() {
+    }
+
+    public String getHowToRead() {
+        return howToRead;
+    }
+
+    public void setHowToRead(String howToRead) {
+        this.howToRead = howToRead;
+    }
+
+    public String getExamples() {
+        return Examples;
+    }
+
+    public void setExamples(String examples) {
+        Examples = examples;
     }
 
     public String getQuestion() {

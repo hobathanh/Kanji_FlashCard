@@ -10,42 +10,94 @@
     android:weightSum="10"
     tools:context=".QuizActivity">
 
-    <LinearLayout
+    <com.wajahatkarim3.easyflipview.EasyFlipView
+        android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
-        android:background="@drawable/button_rounded"
-        android:orientation="vertical"
-        android:text="Question"
-        android:textColor="#fff"
-        android:textSize="35dp"
-        android:weightSum="10">
+        app:flipOnTouch="true"
+        app:flipDuration="500"
+        app:flipEnabled="true"
+        app:flipType="horizontal"
+        app:autoFlipBack="true"
+        app:autoFlipBackTime="5000">
+<!--        back-->
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pronunciation:"
+                android:textColor="#fff"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_howtoread_quiz"
+                android:textColor="#fff"
+                android:textSize="35dp"
+                android:layout_gravity="center"
+                android:text="dhakjshdkjahsdkjaks"/>
 
-        <TextView
-            android:id="@+id/tv_question_index"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:text="1/10"
-            android:textColor="#fff"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Examples:"
+                android:textColor="#fff"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_examples_quiz"
+                android:textColor="#fff"
+                android:textSize="35dp"
+                android:layout_gravity="center"
+                android:text="dhakjshdkjahsdkjaks"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="8"
-            android:gravity="center"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/button_rounded"
+            android:orientation="vertical"
             android:text="Question"
             android:textColor="#fff"
-            android:textSize="50dp"
-            android:textStyle="bold" />
+            android:textSize="35dp"
+            android:weightSum="10">
 
+            <TextView
+                android:id="@+id/tv_question_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0"
+                android:text="1/10"
+                android:textColor="#fff"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="9"
+                android:gravity="center"
+                android:text="Question"
+                android:textColor="#fff"
+                android:textSize="60dp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Press to see more information"
+                android:layout_gravity="center"
+                android:textColor="#B3FFFFFF"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </com.wajahatkarim3.easyflipview.EasyFlipView>
 
     <LinearLayout
         android:layout_width="match_parent"

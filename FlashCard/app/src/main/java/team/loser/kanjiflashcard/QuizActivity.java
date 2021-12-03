@@ -32,7 +32,7 @@ import team.loser.kanjiflashcard.models.Card;
 import team.loser.kanjiflashcard.models.Question;
 
 public class QuizActivity extends AppCompatActivity {
-    private TextView btnOption1, btnOption2, btnOption3, btnOption4;
+    private TextView btnOption1, btnOption2, btnOption3, btnOption4, tvPronunciation, tvExamples;
     private TextView tvQuesIndex, tvQuestion;
     private DatabaseReference allCardsRef;
     private ArrayList<Card> mListCards;
@@ -41,7 +41,6 @@ public class QuizActivity extends AppCompatActivity {
     int questNum = 0;
     int correctAns = 0;
     boolean isFirstChoiceCorrect = true;
-//    int incorrectAns = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +59,9 @@ public class QuizActivity extends AppCompatActivity {
         btnOption4 = findViewById(R.id.btn_option4);
         tvQuesIndex = findViewById(R.id.tv_question_index);
         tvQuestion = findViewById(R.id.tv_question);
+        tvPronunciation = findViewById(R.id.tv_howtoread_quiz);
+        tvExamples = findViewById(R.id.tv_examples_quiz);
+
         mListCards = new ArrayList<>();
         mListOptions = new ArrayList<>();
         mListQuestions = new ArrayList<>();
@@ -213,6 +215,8 @@ public class QuizActivity extends AppCompatActivity {
         btnOption3.setText(mListQuestions.get(i).getOption3());
         btnOption4.setText(mListQuestions.get(i).getOption4());
         tvQuesIndex.setText(i+1+"/"+mListQuestions.size());
+        tvPronunciation.setText(mListQuestions.get(i).getHowToRead());
+        tvExamples.setText(mListQuestions.get(i).getExamples());
     }
 
     private ArrayList<Question> getQuestionListForQuiz() {
@@ -221,15 +225,19 @@ public class QuizActivity extends AppCompatActivity {
         for (Card card : mListCards) {
             String ques = card.getTerm();
             String ans = card.getDefinition();
-            Question question = makeOneQuestion(ques, ans, mListOptions);
+            String read = card.getHowtoread();
+            String ex = card.getExamples();
+            Question question = makeOneQuestion(ques, ans,read,ex, mListOptions);
             listQues.add(question);
         }
         return listQues;
     }
 
-    private Question makeOneQuestion(String ques, String ans, ArrayList<String> allOptions) {
+    private Question makeOneQuestion(String ques, String ans, String read, String ex, ArrayList<String> allOptions) {
         Question resQuestion = new Question();
         resQuestion.setQuestion(ques); // question
+        resQuestion.setHowToRead(read);
+        resQuestion.setExamples(ex);
         String[] options = new String[4];
         Random generator = new Random();
         int indexOfAnswer = generator.nextInt(4);
