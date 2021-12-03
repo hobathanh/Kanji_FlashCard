@@ -39,6 +39,7 @@ import java.io.IOException;
 
 import team.loser.kanjiflashcard.fragments.AboutFragment;
 import team.loser.kanjiflashcard.fragments.CardsFragment;
+import team.loser.kanjiflashcard.fragments.ChangePasswordFragment;
 import team.loser.kanjiflashcard.fragments.HomeFragment;
 import team.loser.kanjiflashcard.fragments.ProfileFragment;
 
@@ -179,6 +180,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if(id == R.id.nav_profile){
+
+        }
+        else if(id == R.id.nav_change_pwd){
+            if(mCurrentFragment != FRAGMENT_PWD){
+                replaceFragment(new ChangePasswordFragment());
+                mCurrentFragment = FRAGMENT_PWD;
+            };
 
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
