@@ -30,7 +30,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     public interface IClickListener{
         void onClickEditCard(Card card);
         void onClickRemoveCard(Card card);
-
+        void onClickToSpeech(Card card);
     }
     public CardAdapter(List<Card> listCards, IClickListener iClickListener){
         this.mListCards = listCards;
@@ -54,18 +54,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
         holder.tvDefinition.setText(card.getDefinition());
         holder.tvHowToRead.setText(card.getHowtoread());
         holder.tvExamples.setText(card.getExamples());
-        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mIClickListener.onClickEditCard(card);
-            }
-        });
-        holder.btnRemove.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mIClickListener.onClickRemoveCard(card);
-            }
-        });
+        holder.btnEdit.setOnClickListener(view -> mIClickListener.onClickEditCard(card));
+        holder.btnRemove.setOnClickListener(view -> mIClickListener.onClickRemoveCard(card));
+        holder.btnTextToSpeech.setOnClickListener(view -> mIClickListener.onClickToSpeech(card));
 
     }
 
@@ -80,7 +71,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
     public class CardViewHolder extends RecyclerView.ViewHolder{
         private TextView tvTerm, tvDefinition,tvHowToRead, tvExamples;
         private FrameLayout frontCard, backCard;
-        private ImageButton btnEdit, btnRemove;
+        private ImageButton btnEdit, btnRemove, btnTextToSpeech;
 
         public CardViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -92,22 +83,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
             backCard = itemView.findViewById(R.id.back_card);
             btnEdit = itemView.findViewById(R.id.btn_edit_card_item);
             btnRemove = itemView.findViewById(R.id.btn_remove_card_item);
-
+            btnTextToSpeech = itemView.findViewById(R.id.btn_speaker_card_item);
 
         }
-    }
-    private void setHeightCard(View front, View back){
-        int frontWidth = front.getLayoutParams().height;
-        int backWidth = back.getLayoutParams().height;
-        int max = frontWidth >= backWidth? frontWidth: backWidth;
-
-        ViewGroup.LayoutParams frontLayoutParams = front.getLayoutParams();
-        frontLayoutParams.height = max;
-        front.setLayoutParams(frontLayoutParams);
-
-        ViewGroup.LayoutParams backLayoutParams = front.getLayoutParams();
-        backLayoutParams.height = max;
-        front.setLayoutParams(backLayoutParams);
     }
 
 }

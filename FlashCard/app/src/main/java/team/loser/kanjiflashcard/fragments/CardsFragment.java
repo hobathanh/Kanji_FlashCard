@@ -5,8 +5,12 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -18,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -34,7 +39,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import team.loser.kanjiflashcard.MainActivity;
 import team.loser.kanjiflashcard.R;
 import team.loser.kanjiflashcard.adapters.CardAdapter;
 import team.loser.kanjiflashcard.models.Card;
@@ -52,6 +59,8 @@ public class CardsFragment extends Fragment {
     private int numOfCards = 0;
     private TextView tvNumOfCard;
 
+    private TextToSpeech mTTSJapanese, mTTSVietnamese;
+
     public static CardsFragment newInstance(DatabaseReference reference) {
         CardsFragment fragment = new CardsFragment(reference);
         return fragment;
@@ -65,6 +74,7 @@ public class CardsFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
@@ -87,6 +97,18 @@ public class CardsFragment extends Fragment {
         tvNumOfCard = mView.findViewById(R.id.tv_num_of_card_card_fragment);
         rcvCards.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
+        mTTSJapanese = new TextToSpeech(getContext(), i -> {
+            if(i == TextToSpeech.SUCCESS){
+               int result =  mTTSJapanese.setLanguage(Locale.JAPAN);
+               if(result == TextToSpeech.LANG_MISSING_DATA
+               || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                   Log.e("TTS", "Language not supported");
+               }
+            }
+            else{
+                Log.e("TTS", "Initialization failed");
+            }
+        });
         mListCards = new ArrayList<>();
         mCardAdapter = new CardAdapter(mListCards, new CardAdapter.IClickListener() {
             @Override
@@ -98,11 +120,28 @@ public class CardsFragment extends Fragment {
             public void onClickRemoveCard(Card card) {
                 CardsFragment.this.onClickRemoveCard(card);
             }
-        });
 
+            @Override
+            public void onClickToSpeech(Card card) {
+                //TODO: text to speech
+                String text = card.getTerm();
+//                mTTSJapanese.setSpeechRate((float) 1.0);
+//                mTTSJapanese.setPitch((float) 1.0);
+                mTTSJapanese.speak(text, TextToSpeech.QUEUE_FLUSH, null,  ""  );
+            }
+        });
         rcvCards.setAdapter(mCardAdapter);
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        if(mTTSJapanese != null){
+            mTTSJapanese.stop();
+            mTTSJapanese.shutdown();
+        }
+        super.onDestroy();
     }
 
     private void setEvents() {
