@@ -9,7 +9,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:cardBackgroundColor="#9438FF"
+        app:cardBackgroundColor="#7E22E8"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +70,14 @@
                 android:orientation="vertical"
                 android:padding="20dp">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Term:"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
                 <EditText
                     android:id="@+id/ed_term_card_detail_dialog"
                     android:layout_width="match_parent"
@@ -81,9 +89,16 @@
                     android:textColorHint="#fff"
                     android:textSize="20dp" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Definition:"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
                 <EditText
                     android:id="@+id/ed_definition_card_detail_dialog"
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="DEFINITION"
@@ -92,9 +107,16 @@
                     android:textColorHint="#fff"
                     android:textColor="#fff"
                     android:textSize="20dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pronunciation:"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
                 <EditText
                     android:id="@+id/ed_read_card_detail_dialog"
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="HOW TO READ"
@@ -107,16 +129,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Add some examples"
+                    android:text="Examples:"
                     android:textColor="@color/white"
-                    android:textSize="20dp"
-                    android:layout_marginTop="10dp"/>
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"/>
                 <EditText
                     android:id="@+id/ed_examples_card_detail_dialog"
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="example 1, example 2,..."
+                    android:hint="Example 1, Example 2,..."
                     android:background="@drawable/edit_text_custom"
                     android:padding="20dp"
                     android:textColorHint="#fff"

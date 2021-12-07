@@ -354,8 +354,8 @@ public class CardsFragment extends Fragment {
                     edDefinition.setError("Definition is required");
                     return;
                 }
-                if (howtoread.isEmpty()) howtoread = "way of reading was not added";
-                if (examples.isEmpty()) examples = "examples was not added";
+                if (howtoread.isEmpty()) howtoread = "was not added";
+                if (examples.isEmpty()) examples = "was not added";
                 loader.setMessage("Adding...");
                 loader.setCanceledOnTouchOutside(false);
                 loader.show();
