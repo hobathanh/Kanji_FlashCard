@@ -3,6 +3,8 @@
     <string name="register"><u>Register here</u></string>
     <string name="sign_in"><u>Sign in here</u></string>
 
+
+
     <string name="nav_home">Home</string>
     <string name="nav_quiz">Quiz</string>
     <string name="nav_about">About</string>
@@ -25,5 +27,6 @@
     <string name="previous">Previous</string>
 
     <string name="action_search">Search</string>
+    <string name="default_web_client_id_2" />
 
 </resources>
