@@ -16,22 +16,24 @@
         android:layout_height="200dp"
         android:layout_gravity="center"
         android:src="@drawable/log_in"/>
+
     <EditText
         android:id="@+id/ed_email_sign_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/edit_text_custom"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="10dp"
         android:hint="Email"
         android:inputType="text"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#fff"
-        android:textColorHint="#99F4F4F4"
-        android:background="@drawable/edit_text_custom"
         android:padding="10dp"
-        android:drawableStart="@drawable/ic_baseline_email_24"
-        android:drawablePadding="10dp"/>
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4" />
+
     <EditText
         android:id="@+id/ed_password_sign_in"
         android:layout_width="match_parent"
@@ -45,6 +47,13 @@
         android:padding="10dp"
         android:drawableStart="@drawable/ic_baseline_vpn_key_24"
         android:drawablePadding="10dp"/>
+    <CheckBox
+        android:id="@+id/cb_remember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remember email and password"
+        android:layout_marginLeft="10dp"
+        android:textColor="#fff"/>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_sign_in"
         android:layout_width="match_parent"

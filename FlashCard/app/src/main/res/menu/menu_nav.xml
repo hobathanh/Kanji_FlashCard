@@ -5,9 +5,9 @@
             android:title="@string/nav_home"
             android:icon="@drawable/ic_baseline_home_24">
         </item>
-        <item android:id="@+id/nav_quiz"
-            android:title="@string/nav_quiz"
-            android:icon="@drawable/ic_baseline_spellcheck_24">
+        <item android:id="@+id/nav_feedback"
+            android:title="@string/nav_feedback"
+            android:icon="@drawable/ic_baseline_feedback_24">
         </item>
         <item android:id="@+id/nav_about"
             android:title="@string/nav_about"
@@ -30,4 +30,5 @@
             </item>
         </menu>
     </item>
+
 </menu>

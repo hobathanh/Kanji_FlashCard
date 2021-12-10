@@ -21,6 +21,7 @@
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.26614583333333336" />
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable/ic_baseline_lock_reset_24.xml" value="0.2375" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable/ic_baseline_logout_24.xml" value="0.2375" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable/ic_baseline_more_vert_24.xml" value="0.2375" />
@@ -38,9 +39,9 @@
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_google_sign_in.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_login.xml" value="0.13020833333333334" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_quiz.xml" value="0.264" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_sign_in.xml" value="0.4" />
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_sign_in.xml" value="0.2" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_sign_in2.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_sign_up.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/activity_splash.xml" value="0.2" />
@@ -51,12 +52,13 @@
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_card_edit.xml" value="0.20277777777777778" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_category_detail.xml" value="0.2359375" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_custom.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_feedback.xml" value="0.4" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_result_quiz.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/edit_category_dialog.xml" value="0.176" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_about.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_cards.xml" value="0.2359375" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_change_password.xml" value="0.22135416666666666" />
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_change_password.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_profile.xml" value="0.264" />

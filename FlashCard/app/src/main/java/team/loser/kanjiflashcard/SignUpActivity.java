@@ -17,10 +17,15 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class SignUpActivity extends AppCompatActivity {
     private EditText edEmail, edPassword, edConfirmPassword;
@@ -74,9 +79,23 @@ public class SignUpActivity extends AppCompatActivity {
                                     finishAffinity();
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Toast.makeText(SignUpActivity.this, "Sign up failed.", Toast.LENGTH_SHORT).show();
+                                    try{
+                                        throw task.getException();
+                                    }catch (FirebaseAuthWeakPasswordException e){
+                                        Toast.makeText(SignUpActivity.this, "Password too short, enter minimum 6 characters.",Toast.LENGTH_SHORT).show();
+                                    }
+                                    catch (FirebaseAuthInvalidCredentialsException  e){
+                                        Toast.makeText(SignUpActivity.this, "The email address is badly formatted.",Toast.LENGTH_SHORT).show();
+                                    }
+                                    catch (FirebaseAuthUserCollisionException e){
+                                        Toast.makeText(SignUpActivity.this, "The email address is already in use by another account.",Toast.LENGTH_SHORT).show();
+                                    }
+                                    catch (Exception e){
+
+                                    }
                                 }
                             }
+
                         });
             }
         });
@@ -117,4 +136,5 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }, 2000);
     }
+
 }

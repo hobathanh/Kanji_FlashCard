@@ -11,7 +11,7 @@
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/avatar_default_icon"
+        android:src="@drawable/avt_default"
         android:id="@+id/img_avt"/>
     <EditText
         android:layout_width="match_parent"

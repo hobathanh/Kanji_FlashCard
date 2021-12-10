@@ -93,7 +93,7 @@ public class ProfileFragment extends Fragment {
 
         edFullName.setText(user.getDisplayName());
         edEmail.setText(user.getEmail());
-        Glide.with(getActivity()).load(user.getPhotoUrl()).error(R.drawable.avatar_default_icon).into(imgAvt);
+        Glide.with(getActivity()).load(user.getPhotoUrl()).error(R.drawable.avt_default).into(imgAvt);
     }
 
     private void setControls() {

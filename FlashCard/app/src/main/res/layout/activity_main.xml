@@ -35,6 +35,21 @@
         android:layout_height="match_parent"
         app:headerLayout="@layout/layout_header_nav"
         app:menu="@menu/menu_nav"
-        android:layout_gravity="start"/>
+        android:layout_gravity="start">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Developed by !Loser Team"
+                android:textColor="#808080"/>
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
