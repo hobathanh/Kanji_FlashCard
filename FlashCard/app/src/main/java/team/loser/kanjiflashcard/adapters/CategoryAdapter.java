@@ -93,6 +93,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
                 mIClickListener.onClickStartQuizActivity(category);
             }
         });
+        holder.btnPractice.setOnClickListener(view -> mIClickListener.onClickStartQuizActivity(category));
         holder.tvCateName.setOnClickListener(view -> mIClickListener.onClickItemCategory(mUserReference.child(category.getId())));
         //layout click
         holder.tvNumOfCards.setOnClickListener(view -> mIClickListener.onClickItemCategory(mUserReference.child(category.getId())));

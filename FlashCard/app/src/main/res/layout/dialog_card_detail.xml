@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#9C5DE4">
+    android:background="#E387C8">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:cardBackgroundColor="#7E22E8"
+        app:cardBackgroundColor="#a4508b"
         app:cardCornerRadius="0dp"
         app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
                 android:layout_marginStart="8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:padding="8dp"
-                android:src="@drawable/ic_baseline_close_24" />
+                android:src="@drawable/ic_baseline_close_24"/>
 
             <TextView
                 android:id="@+id/dialog_title"
@@ -57,7 +57,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="10"
+        android:weightSum="11"
         android:orientation="vertical">
         <androidx.core.widget.NestedScrollView
             android:layout_weight="9"
@@ -119,7 +119,7 @@
                     android:id="@+id/ed_read_card_detail_dialog"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="HOW TO READ"
+                    android:hint="PRONUNCIATION"
                     android:background="@drawable/edit_text_custom"
                     android:padding="20dp"
                     android:textColorHint="#fff"
@@ -151,17 +151,21 @@
         </androidx.core.widget.NestedScrollView>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_add_next_card_card_detail_dialog"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:background="@drawable/button_rounded"
             android:layout_gravity="center"
             android:textColor="#fff"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:text="ADD NEXT CARD"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:padding="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:drawableLeft="@drawable/ic_baseline_add_24"
             />
     </LinearLayout>

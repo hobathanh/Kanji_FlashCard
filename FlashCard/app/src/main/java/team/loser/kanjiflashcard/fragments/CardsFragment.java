@@ -59,6 +59,7 @@ public class CardsFragment extends Fragment {
     private int numOfCards = 0;
     private TextView tvNumOfCard;
 
+
     private TextToSpeech mTTSJapanese, mTTSVietnamese;
 
     public static CardsFragment newInstance(DatabaseReference reference) {
@@ -131,7 +132,6 @@ public class CardsFragment extends Fragment {
             }
         });
         rcvCards.setAdapter(mCardAdapter);
-
 
     }
 

@@ -12,7 +12,7 @@
         android:id="@+id/layout_options"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:background="#EFEFEF"
+        android:background="#FFD4F3"
         android:gravity="center">
 
         <ImageButton
@@ -56,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:background="@color/white"
+            android:background="#FFDAF4"
             android:orientation="vertical">
 
             <LinearLayout
@@ -70,6 +70,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
                     android:weightSum="10">
 
                     <TextView
@@ -85,48 +87,44 @@
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="2dp"
                         android:layout_weight="5"
                         android:gravity="center"
-                        android:padding="2dp"
                         android:text="Nov 1, 2021"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
+                        android:textSize="12dp" />
                 </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_category_name"
-                    android:layout_width="300dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
                     android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:background="@drawable/button_custom"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:maxLines="1"
-                    android:padding="5dp"
+                    android:padding="2dp"
                     android:text="Category name"
-                    android:textColor="#000"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textColor="#5f0a87"
+                    android:textSize="26dp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="10dp"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="2"
+                    android:layout_marginLeft="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
                         android:padding="2dp"
                         android:text="Desription:"
                         android:textColor="#000"
@@ -147,7 +145,8 @@
                     android:id="@+id/tv_cards_or_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:paddingLeft="2dp"
+                    android:layout_marginLeft="10dp"
                     android:text="0"
                     android:textColor="#000"
                     android:textSize="12dp" />
@@ -157,7 +156,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp"
+                    android:padding="10dp"
                     android:weightSum="5">
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -167,8 +166,9 @@
                         android:layout_weight="1"
                         android:background="@drawable/button_rounded_transparent"
                         android:text="REVIEW"
-                        android:textColor="#9438ff"
-                        android:textSize="18dp" />
+                        android:textColor="#5f0a87"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5dp"/>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_practice_category_item"
@@ -178,7 +178,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/button_rounded_transparent"
                         android:text="PRACTICE"
-                        android:textColor="#9438ff"
+                        android:textColor="#5f0a87"
                         android:textSize="18dp" />
                 </LinearLayout>
 

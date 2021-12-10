@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_corner_dialog"
     android:orientation="vertical"
-    android:background="@drawable/faded_background_custom">
-
+    android:layout_margin="16dp">
     <TextView
-        android:layout_width="300dp"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/button_custom"
+        android:id="@+id/tv_dialog_title"
+        android:background="@drawable/title_corner_top_dialog"
         android:gravity="center"
         android:padding="10dp"
         android:text="Add new category"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="25dp"
         android:textStyle="bold" />
 
@@ -22,46 +21,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="20dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="category:"/>
+            android:textColor="#000"
+            android:text="Category name:"/>
         <EditText
             android:id="@+id/ed_category_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Category name"
-            android:background="@drawable/edit_text_custom"
+            android:background="@drawable/edit_text_gray_border"
             android:textSize="20dp"
             android:padding="10dp"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:hint="Name"/>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp">
         <TextView
+            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="description:"/>
+            android:text="Description:"/>
         <EditText
             android:id="@+id/ed_category_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
-            android:background="@drawable/edit_text_custom"
+            android:background="@drawable/edit_text_gray_border"
             android:textSize="20dp"
             android:padding="10dp"
-            android:textColor="#000"/>
+            android:textColor="#000"
+            android:hint="Description"/>
 
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="10dp">
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -75,9 +79,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/button_custom"
+                android:background="@drawable/button_cancel_custom"
                 android:text="Cancel"
                 android:textAllCaps="false"
+                android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
@@ -97,9 +102,9 @@
                 android:background="@drawable/button_custom"
                 android:text="Save"
                 android:textAllCaps="false"
+                android:textColor="#fff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
         </RelativeLayout>
     </LinearLayout>
-
 </LinearLayout>

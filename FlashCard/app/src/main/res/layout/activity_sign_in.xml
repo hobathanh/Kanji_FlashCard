@@ -26,8 +26,8 @@
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        android:textColor="#000"
-
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4"
         android:background="@drawable/edit_text_custom"
         android:padding="10dp"
         android:drawableStart="@drawable/ic_baseline_email_24"
@@ -39,7 +39,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:layout_margin="10dp"
-        android:textColor="#000"
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4"
         android:background="@drawable/edit_text_custom"
         android:padding="10dp"
         android:drawableStart="@drawable/ic_baseline_vpn_key_24"
@@ -65,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#fff"
-            android:text="Don't have account?"
+            android:text="Don't have an account?"
             android:layout_gravity="center"
             android:gravity="center"/>
         <TextView
@@ -73,7 +74,7 @@
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_up"
+            android:text="@string/register"
             android:textColor="#fff"
             android:textStyle="bold"/>
     </LinearLayout>

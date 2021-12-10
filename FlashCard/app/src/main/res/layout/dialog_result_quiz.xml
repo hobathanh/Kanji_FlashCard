@@ -6,9 +6,9 @@
     android:orientation="vertical"
     android:padding="15dp"
     android:weightSum="10"
-    android:background="#7C3EC5">
+    android:background="#E387C8"
+    android:gravity="center">
     <LinearLayout
-        android:layout_marginTop="80dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -43,7 +43,7 @@
                 android:id="@+id/layout_options"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#B26EFD"
+                android:background="#CC64AD"
                 android:orientation="vertical"
                 android:padding="10dp">
                 <TextView
@@ -54,7 +54,8 @@
                     android:textColor="#fff"
                     android:textStyle="bold"
                     android:layout_gravity="center"
-                    android:textSize="25dp"/>
+                    android:textSize="25dp"
+                    android:padding="15dp"/>
                 <LinearLayout
                     android:gravity="center"
                     android:layout_width="match_parent"
@@ -65,9 +66,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Correct answers: "
-                        android:textSize="24dp"
+                        android:textSize="25dp"
                         android:textStyle="bold"
-                        android:textColor="#43FF3C"/>
+                        android:textColor="#3CDA36"/>
                     <TextView
                         android:id="@+id/tv_correct_count"
                         android:layout_width="wrap_content"
@@ -87,9 +88,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Incorrect answers: "
-                        android:textSize="24dp"
+                        android:textSize="25dp"
                         android:textStyle="bold"
-                        android:textColor="#F30226"/>
+                        android:textColor="#E40D2D"/>
                     <TextView
                         android:id="@+id/tv_incorrect_count"
                         android:layout_width="wrap_content"
@@ -105,11 +106,14 @@
                     android:layout_height="wrap_content"
                     android:text="VIEW RESULT"
                     android:background="@drawable/button_rounded_transparent"
-                    android:textColor="#7C3EC5"
+                    android:textColor="#5f0a87"
                     android:layout_gravity="center"
                     android:textSize="20dp"
-                    android:padding="10dp"
-                    android:layout_marginTop="10dp"/>
+                    android:paddingRight="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_marginTop="15dp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
@@ -121,7 +125,7 @@
         android:layout_height="wrap_content"
         android:text="DONE"
         android:background="@drawable/button_rounded"
-        android:textSize="20dp"
+        android:textSize="24dp"
         android:padding="10dp"
         android:textColor="#fff"/>
 </LinearLayout>

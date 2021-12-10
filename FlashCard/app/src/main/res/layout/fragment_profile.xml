@@ -9,28 +9,28 @@
     android:usesCleartextTraffic="true">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@drawable/avatar_default_icon"
         android:id="@+id/img_avt"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="15dp"
         android:hint="Full name"
-        android:textColor="#000"
-        android:textColorHint="#000"
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4"
         android:id="@+id/ed_full_name"
         android:background="@drawable/edit_text_custom"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"/>
     <EditText
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/edit_text_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#000"
-        android:textColorHint="#000"
-        android:padding="10dp"
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4"
+        android:padding="15dp"
         android:hint="Email"
         android:id="@+id/ed_email"/>
     <androidx.appcompat.widget.AppCompatButton
@@ -39,14 +39,17 @@
         android:background="@drawable/button_custom"
         android:text="Update profile"
         android:layout_marginTop="20dp"
-        android:id="@+id/btn_update"/>
+        android:id="@+id/btn_update"
+        android:textColor="#fff"
+
+        android:textSize="18dp"/>
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_custom"
         android:text="Update email"
-        android:layout_marginTop="10dp"
-        android:id="@+id/btn_update_email"/>
-
-
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_update_email"
+        android:textColor="#fff"
+        android:textSize="18dp"/>/>
 </LinearLayout>

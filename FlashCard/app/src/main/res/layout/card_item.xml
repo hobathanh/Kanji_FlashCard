@@ -29,7 +29,7 @@
                 android:id="@+id/layout_options"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#D6B3FD"
+                android:background="#F8A6E0"
                 android:orientation="vertical"
                 android:padding="10dp">
                 <!--            Examples-->
@@ -80,7 +80,7 @@
                 android:weightSum="10">
                 <LinearLayout
                     android:layout_weight="9"
-                    android:background="#A04EFF"
+                    android:background="#E387C8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -111,7 +111,7 @@
                     android:orientation="horizontal"
                     android:layout_weight="2"
                     android:gravity="center"
-                    android:background="#9449EC"
+                    android:background="#DD83C3"
                     android:padding="10dp">
                     <ImageButton
                         android:layout_width="24dp"

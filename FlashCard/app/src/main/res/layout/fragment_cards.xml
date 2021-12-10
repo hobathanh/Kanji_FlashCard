@@ -2,17 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_cards"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4B1A85"
+    android:background="@drawable/background_custom"
     android:orientation="vertical"
-    android:weightSum="15"
-    android:id="@+id/frame_cards">
+    android:weightSum="15">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#4B1A85"
         android:orientation="vertical"
         android:weightSum="15">
 
@@ -32,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:text="All Cards:"
+                    android:text="All Cards: "
                     android:textColor="#fff"
                     android:textSize="18dp"
                     android:textStyle="bold" />
@@ -47,28 +46,31 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rcv_list_cards_cards_fragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:scrollbars="vertical" />
+                android:scrollbars="vertical"/>
+
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal"
             android:gravity="center"
+            android:orientation="horizontal"
             android:padding="5dp">
+
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="5dp"
                 android:id="@+id/btn_add_card_cards_fragment"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/button_rounded"
                 android:drawableLeft="@drawable/ic_baseline_add_24"

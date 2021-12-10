@@ -6,11 +6,15 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -83,12 +87,22 @@ public class HomeFragment extends Fragment {
     }
 
     private void addNewCategory() {
-        Dialog dialog = new Dialog(getActivity());
+        final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.add_category_dialog);
+        dialog.setContentView(R.layout.dialog_category_detail);
+        Window window = dialog.getWindow();
+        if(window == null) return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+        dialog.setCancelable(true);
+        TextView tvDialogTitle = dialog.findViewById(R.id.tv_dialog_title);
+        tvDialogTitle.setText("ADD NEW CATEGORY");
 
-        final EditText edCategoryName = dialog.findViewById(R.id.ed_category_name);
-        final EditText edDescription = dialog.findViewById(R.id.ed_category_description);
+        EditText edCategoryName = dialog.findViewById(R.id.ed_category_name);
+        EditText edDescription = dialog.findViewById(R.id.ed_category_description);
         Button btnSave = dialog.findViewById(R.id.btn_save);
         Button btnCancel = dialog.findViewById(R.id.btn_cancel);
 
@@ -142,9 +156,6 @@ public class HomeFragment extends Fragment {
         //recycler view
         rcvCategories = mView.findViewById(R.id.rcv_list_categories);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
-        rcvCategories.setHasFixedSize(true);
         rcvCategories.setLayoutManager(linearLayoutManager);
         SpacingItemDecorator itemDecorator = new SpacingItemDecorator(20, true, false);
         rcvCategories.addItemDecoration(itemDecorator);
@@ -250,17 +261,28 @@ public class HomeFragment extends Fragment {
 
     }
     private void onClickUpdateCategory(Category category){
-        Dialog editDialog = new Dialog(getContext());
+        final Dialog editDialog = new Dialog(getActivity());
         editDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        editDialog.setContentView(R.layout.edit_category_dialog);
+        editDialog.setContentView(R.layout.dialog_category_detail);
+        Window window = editDialog.getWindow();
+        if(window == null) return;
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        WindowManager.LayoutParams windowAttributes = window.getAttributes();
+        windowAttributes.gravity = Gravity.CENTER;
+        window.setAttributes(windowAttributes);
+        editDialog.setCancelable(true);
 
-        EditText edCateName = editDialog.findViewById(R.id.ed_category_name_edit);
-        EditText edDescription = editDialog.findViewById(R.id.ed_category_description_edit);
-        Button btnCancel = editDialog.findViewById(R.id.btn_cancel_edit);
-        Button btnUpdate = editDialog.findViewById(R.id.btn_update_category_edit);
+        TextView tvDialogTitle = editDialog.findViewById(R.id.tv_dialog_title);
+        tvDialogTitle.setText("UPDATE CATEGORY");
 
-        edCateName.setText(category.getName());
-        edCateName.setSelection(category.getName().length());
+        EditText edCategoryName = editDialog.findViewById(R.id.ed_category_name);
+        EditText edDescription = editDialog.findViewById(R.id.ed_category_description);
+        Button btnUpdate = editDialog.findViewById(R.id.btn_save);
+        Button btnCancel = editDialog.findViewById(R.id.btn_cancel);
+
+        edCategoryName.setText(category.getName());
+        edCategoryName.setSelection(category.getName().length());
         edDescription.setText(category.getDescription());
         edDescription.setSelection(category.getDescription().length());
         btnCancel.setOnClickListener(new View.OnClickListener() {
@@ -272,7 +294,7 @@ public class HomeFragment extends Fragment {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String cateName = edCateName.getText().toString().trim();
+                String cateName = edCategoryName.getText().toString().trim();
                 String desc = edDescription.getText().toString().trim();
                 String timeStamp = new SimpleDateFormat("dd-MM-yyy HH:mm:ss").format(new Date());
                 Map<String, Object> map = new HashMap<>();
