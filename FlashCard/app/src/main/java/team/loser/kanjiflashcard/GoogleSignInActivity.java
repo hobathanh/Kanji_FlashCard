@@ -40,7 +40,7 @@ public class GoogleSignInActivity extends SignInActivity {
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id_2))
+                .requestIdToken("919184619212-3h7jgtu0sr1iuv8gjq3ggq9ug1hrgfnk.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -62,11 +62,11 @@ public class GoogleSignInActivity extends SignInActivity {
             try {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-
                 firebaseAuthWithGoogle(account.getIdToken());
+                Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Toast.makeText(this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "failed: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
                 finish();
             }
@@ -79,24 +79,18 @@ public class GoogleSignInActivity extends SignInActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        progressDialog.dismiss();
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            progressDialog.dismiss();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            Intent intent = new Intent(GoogleSignInActivity.this, MainActivity.class);
+                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(GoogleSignInActivity.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
-                            finish();
                         }
+                        finishAffinity();
                     }
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(GoogleSignInActivity.this,SignInActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
 }
