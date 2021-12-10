@@ -14,6 +14,9 @@
         android:theme="@style/Theme.KanjiFlashCard"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".GoogleSignInActivity"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="true" />
         <activity

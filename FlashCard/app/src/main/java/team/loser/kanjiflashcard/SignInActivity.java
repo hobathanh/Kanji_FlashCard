@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignInActivity extends AppCompatActivity {
     private EditText edEmail, edPassword;
-    private Button btnSignIn;
+    private Button btnSignIn, btnSignInWithGoogle ;
     private LinearLayout layoutSignUp;
     private ProgressDialog loader;
 
@@ -75,6 +75,14 @@ public class SignInActivity extends AppCompatActivity {
                         });
             }
         });
+        btnSignInWithGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignInActivity.this,GoogleSignInActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void setControls() {
@@ -84,6 +92,7 @@ public class SignInActivity extends AppCompatActivity {
         edEmail = findViewById(R.id.ed_email_sign_in);
         edPassword = findViewById(R.id.ed_password_sign_in);
         btnSignIn = findViewById(R.id.btn_sign_in);
+        btnSignInWithGoogle = findViewById((R.id.btn_sign_in_with_google));
     }
 
     boolean doubleBackToExitPressedOnce = false;
