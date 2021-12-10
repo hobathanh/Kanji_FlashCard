@@ -179,11 +179,40 @@ public class HomeFragment extends Fragment {
             }
 
             @Override
-            public void onClickStartQuizActivity(Category category) {
+            public void onClickStartReview(Category category) {
                 Intent intent = new Intent(getContext(), QuizActivity.class);
                 intent.putExtra("CATEGORY_ID", category.getId());
+                intent.putExtra("IS_REVERSED", false);
+                intent.putExtra("IS_SHUFFLE", false);
                 startActivity(intent);
             }
+
+            @Override
+            public void onClickStartPractice(Category category) {
+                Intent intent = new Intent(getContext(), QuizActivity.class);
+                intent.putExtra("CATEGORY_ID", category.getId());
+                intent.putExtra("IS_SHUFFLE", true);
+
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Practice mode")
+                        .setMessage("Do you want reverse term and definition?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                intent.putExtra("IS_REVERSED", true);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                intent.putExtra("IS_REVERSED", false);
+                                startActivity(intent);
+                            }
+                        })
+                        .show();
+            }
+
         });
 
         rcvCategories.setAdapter(mCategoryAdapter);

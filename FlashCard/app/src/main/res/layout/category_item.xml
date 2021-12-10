@@ -7,46 +7,76 @@
     android:background="@drawable/category_background"
     app:dragEdge="right"
     app:mode="same_level">
-
+<!--right side-->
     <LinearLayout
         android:id="@+id/layout_options"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:background="#FFD4F3"
-        android:gravity="center">
-
-        <ImageButton
-            android:id="@+id/btn_add_card_category_item"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/add_cate"
-            android:layout_marginRight="10dp"/>
-
-        <ImageButton
-            android:id="@+id/btn_edit_category_item"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/edit_cate"
+        android:gravity="center"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:gravity="center">
 
-        <ImageButton
-            android:id="@+id/btn_remove_category_item"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/remove_cate"
-            android:layout_marginLeft="10dp"/>
+            <TextView
+                android:id="@+id/tv_day_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:text="5" />
+
+            <TextView
+                android:id="@+id/tv_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="right"
+                android:text="Nov 1, 2021"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_add_card_category_item"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/add_cate"
+                android:layout_marginRight="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_edit_category_item"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/edit_cate"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_remove_category_item"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                android:src="@drawable/remove_cate"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
     </LinearLayout>
-
+<!--left side-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -64,49 +94,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:weightSum="10">
-
-                    <TextView
-                        android:id="@+id/tv_day_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="5"
-                        android:text="5" />
-
-                    <TextView
-                        android:id="@+id/tv_timestamp"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="5"
-                        android:gravity="center"
-                        android:text="Nov 1, 2021"
-                        android:textSize="12dp" />
-                </LinearLayout>
-
+                android:orientation="vertical"
+                android:layout_marginLeft="15dp">
                 <TextView
                     android:id="@+id/tv_category_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:gravity="left"
-                    android:maxLines="1"
-                    android:padding="2dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
                     android:text="Category name"
                     android:textColor="#5f0a87"
                     android:textSize="26dp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="10dp"/>
-
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
@@ -125,8 +126,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="2dp"
-                        android:text="Desription:"
+                        android:text="Description:"
                         android:textColor="#000"
                         android:textSize="15dp" />
 
@@ -134,8 +134,7 @@
                         android:id="@+id/tv_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="2dp"
-                        android:text="Desription here"
+                        android:text="Description here"
                         android:textColor="#000"
                         android:textSize="15dp"
                         android:layout_weight="2"/>
@@ -145,7 +144,6 @@
                     android:id="@+id/tv_cards_or_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="2dp"
                     android:layout_marginLeft="10dp"
                     android:text="0"
                     android:textColor="#000"
@@ -156,7 +154,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingBottom="10dp"
                     android:weightSum="5">
 
                     <androidx.appcompat.widget.AppCompatButton

@@ -2,13 +2,16 @@ package team.loser.kanjiflashcard;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
@@ -25,6 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -35,12 +40,15 @@ public class QuizActivity extends AppCompatActivity {
     private TextView btnOption1, btnOption2, btnOption3, btnOption4, tvPronunciation, tvExamples;
     private TextView tvQuesIndex, tvQuestion;
     private DatabaseReference allCardsRef;
+
     private ArrayList<Card> mListCards;
     private ArrayList<Question> mListQuestions;
     private ArrayList<String> mListOptions;
     int questNum = 0;
     int correctAns = 0;
     boolean isFirstChoiceCorrect = true;
+    boolean isReversed = false;
+    boolean isShuffleQues = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,82 +76,86 @@ public class QuizActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String categoryId = intent.getStringExtra("CATEGORY_ID");
+        boolean reverse = intent.getBooleanExtra("IS_REVERSED", false);
+        boolean shuffle = intent.getBooleanExtra("IS_SHUFFLE", false);
+        isReversed = reverse;
+        isShuffleQues = shuffle;
         allCardsRef = MainActivity.reference.child(categoryId).child("flashCards");
 
     }
+
     int selectedOption = -1;
+
     private void setEvents() {
         btnOption1.setOnClickListener(view -> {
-            selectedOption =0;
+            selectedOption = 0;
             checkAnswer(selectedOption);
         });
         btnOption2.setOnClickListener(view -> {
-            selectedOption =1;
+            selectedOption = 1;
             checkAnswer(selectedOption);
         });
         btnOption3.setOnClickListener(view -> {
-            selectedOption =2;
+            selectedOption = 2;
             checkAnswer(selectedOption);
         });
         btnOption4.setOnClickListener(view -> {
-            selectedOption =3;
+            selectedOption = 3;
             checkAnswer(selectedOption);
         });
     }
 
     private void checkAnswer(int selectedOption) {
 
-        if(selectedOption == mListQuestions.get(questNum).getCorrectAns()){
+        if (selectedOption == mListQuestions.get(questNum).getCorrectAns()) {
             //correct
-            if(selectedOption == 0){
-                btnOption1.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            if (selectedOption == 0) {
+                btnOption1.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.correct));
                 btnOption2.setEnabled(false);
                 btnOption3.setEnabled(false);
                 btnOption4.setEnabled(false);
             }
-            if(selectedOption == 1){
-                btnOption2.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            if (selectedOption == 1) {
+                btnOption2.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.correct));
                 btnOption1.setEnabled(false);
                 btnOption3.setEnabled(false);
                 btnOption4.setEnabled(false);
             }
-            if(selectedOption == 2){
-                btnOption3.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            if (selectedOption == 2) {
+                btnOption3.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.correct));
                 btnOption1.setEnabled(false);
                 btnOption2.setEnabled(false);
                 btnOption4.setEnabled(false);
             }
-            if(selectedOption == 3){
-                btnOption4.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            if (selectedOption == 3) {
+                btnOption4.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.correct));
                 btnOption1.setEnabled(false);
                 btnOption3.setEnabled(false);
                 btnOption2.setEnabled(false);
             }
             Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    // do something
-                    if(isFirstChoiceCorrect) correctAns++;
-                    changeQuestion();
-                }
+            handler.postDelayed(() -> {
+                // do something
+                if (isFirstChoiceCorrect) correctAns++;
+                changeQuestion();
             }, 1000);
-        }
-        else{
+        } else {
             //wrong
             isFirstChoiceCorrect = false;
-            if(selectedOption == 0){
-                btnOption1.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            if (selectedOption == 0) {
+                btnOption1.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.incorrect));
             }
-            if(selectedOption == 1){
-                btnOption2.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            if (selectedOption == 1) {
+                btnOption2.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.incorrect));
             }
-            if(selectedOption == 2){
-                btnOption3.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            if (selectedOption == 2) {
+
+                btnOption3.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.incorrect));
             }
-            if(selectedOption == 3){
-                btnOption4.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+            if (selectedOption == 3) {
+                btnOption4.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.incorrect));
             }
+
         }
     }
 
@@ -157,14 +169,13 @@ public class QuizActivity extends AppCompatActivity {
         btnOption3.setEnabled(true);
         btnOption2.setEnabled(true);
         btnOption4.setEnabled(true);
-        if(questNum < mListQuestions.size() -1){
+        if (questNum < mListQuestions.size() - 1) {
             questNum++;
             setQuestion(questNum);
-        }
-        else {
+        } else {
             //end quizz
 
-            Dialog dialog = new Dialog(this , android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+            Dialog dialog = new Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.dialog_result_quiz);
 
@@ -173,8 +184,8 @@ public class QuizActivity extends AppCompatActivity {
             Button btnViewResult = dialog.findViewById(R.id.btn_view_result_dialog);
             Button btnDone = dialog.findViewById(R.id.btn_done_dialog);
 
-            tvCorrectAns.setText(correctAns+"");
-            tvIncorrectAns.setText((questNum + 1 - correctAns) +"");
+            tvCorrectAns.setText(correctAns + "");
+            tvIncorrectAns.setText((questNum + 1 - correctAns) + "");
             btnDone.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -195,15 +206,22 @@ public class QuizActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Card card = dataSnapshot.getValue(Card.class);
                     mListCards.add(card);
-                    mListOptions.add(card.getDefinition());
+                    if (isReversed) {
+                        mListOptions.add(card.getTerm());
+                    } else {
+                        mListOptions.add(card.getDefinition());
+                    }
                 }
-                mListQuestions = getQuestionListForQuiz();
+                mListQuestions = getQuestionListForQuiz(isReversed);
+                if (isShuffleQues) {
+                    Collections.shuffle(mListQuestions);
+                }
                 setQuestion(questNum);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(QuizActivity.this, "can't get list of cards", Toast.LENGTH_SHORT).show();
+                Log.e("GET CARDS", "Get list of cards failed");
             }
         });
     }
@@ -214,20 +232,27 @@ public class QuizActivity extends AppCompatActivity {
         btnOption2.setText(mListQuestions.get(i).getOption2());
         btnOption3.setText(mListQuestions.get(i).getOption3());
         btnOption4.setText(mListQuestions.get(i).getOption4());
-        tvQuesIndex.setText(i+1+"/"+mListQuestions.size());
+        tvQuesIndex.setText(i + 1 + "/" + mListQuestions.size());
         tvPronunciation.setText(mListQuestions.get(i).getHowToRead());
         tvExamples.setText(mListQuestions.get(i).getExamples());
     }
 
-    private ArrayList<Question> getQuestionListForQuiz() {
+    private ArrayList<Question> getQuestionListForQuiz(boolean reversed) {
         if (mListCards.size() == 0) return null;
         ArrayList<Question> listQues = new ArrayList<>();
         for (Card card : mListCards) {
-            String ques = card.getTerm();
-            String ans = card.getDefinition();
+            String ques;
+            String ans;
+            if (reversed == true) {
+                ques = card.getDefinition();
+                ans = card.getTerm();
+            } else {
+                ques = card.getTerm();
+                ans = card.getDefinition();
+            }
             String read = card.getHowtoread();
             String ex = card.getExamples();
-            Question question = makeOneQuestion(ques, ans,read,ex, mListOptions);
+            Question question = makeOneQuestion(ques, ans, read, ex, mListOptions);
             listQues.add(question);
         }
         return listQues;
