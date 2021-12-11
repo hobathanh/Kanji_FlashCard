@@ -13,7 +13,7 @@ import team.loser.kanjiflashcard.R;
 
 public class AboutFragment extends Fragment {
 
-
+    public static final String ABOUT_FRAGMENT_NAME = AboutFragment.class.getName();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

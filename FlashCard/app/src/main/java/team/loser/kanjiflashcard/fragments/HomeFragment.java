@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,9 +52,10 @@ import team.loser.kanjiflashcard.QuizActivity;
 import team.loser.kanjiflashcard.R;
 import team.loser.kanjiflashcard.adapters.CategoryAdapter;
 import team.loser.kanjiflashcard.models.Category;
+import team.loser.kanjiflashcard.utils.IOnBackPressed;
 import team.loser.kanjiflashcard.utils.SpacingItemDecorator;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements IOnBackPressed {
     private View mView;
     private DatabaseReference userReference;
 
@@ -351,5 +354,24 @@ public class HomeFragment extends Fragment {
         });
         editDialog.show();
     }
+    boolean doubleBackToExitPressedOnce = false;
 
+    @Override
+    public boolean onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            return false;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(getContext(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
+        return true;
+    }
 }

@@ -54,6 +54,7 @@ import team.loser.kanjiflashcard.fragments.CardsFragment;
 import team.loser.kanjiflashcard.fragments.ChangePasswordFragment;
 import team.loser.kanjiflashcard.fragments.HomeFragment;
 import team.loser.kanjiflashcard.fragments.ProfileFragment;
+import team.loser.kanjiflashcard.utils.IOnBackPressed;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout mDrawerLayout;
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_PWD = 4;
     private static final int FRAGMENT_CARDS = 5;
 
+    private FragmentTransaction fragmentTransaction;
     final private ProfileFragment mProfileFragment = new ProfileFragment();
     private NavigationView mNavigationView;
     private ImageView imgAvt;
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         reference = FirebaseDatabase.getInstance().getReference().child("cards").child(onlineUserID);
         referenceFeedback = FirebaseDatabase.getInstance().getReference().child("feedbacks").child(onlineUserID);
         //transaction fragments
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.content_frame, new HomeFragment());
         fragmentTransaction.commit();
         mNavigationView.getMenu().findItem(R.id.nav_home).setChecked(true);
@@ -168,7 +170,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if(id == R.id.nav_home){
             if(mCurrentFragment != FRAGMENT_HOME){
-                replaceFragment(new HomeFragment());
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.add(R.id.content_frame, new HomeFragment());
+                fragmentTransaction.commit();
                 mCurrentFragment = FRAGMENT_HOME;
             }
         }
@@ -204,12 +208,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             dialog.show();
         }
         else if(id == R.id.nav_about){
-            replaceFragment(new AboutFragment());
-            mCurrentFragment = FRAGMENT_ABOUT;
+            if(mCurrentFragment != FRAGMENT_ABOUT){
+                AboutFragment aboutFragment = new AboutFragment();
+                replaceFragment(aboutFragment, aboutFragment.ABOUT_FRAGMENT_NAME);
+                mCurrentFragment = FRAGMENT_ABOUT;
+            }
+
         }
         else if(id == R.id.nav_profile){
             if(mCurrentFragment != FRAGMENT_PROFILE){
-                replaceFragment(mProfileFragment);
+                ProfileFragment profileFragment = new ProfileFragment();
+                replaceFragment(profileFragment, profileFragment.PROFILE_FRAGMENT_NAME);
                 mCurrentFragment = FRAGMENT_PROFILE;
             }
 
@@ -222,52 +231,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         }
         else if(id == R.id.nav_profile){
-
+            if(mCurrentFragment != FRAGMENT_PROFILE){
+                ProfileFragment profileFragment = new ProfileFragment();
+                replaceFragment(profileFragment, profileFragment.PROFILE_FRAGMENT_NAME);
+                mCurrentFragment = FRAGMENT_PROFILE;
+            }
         }
         else if(id == R.id.nav_change_pwd){
             if(mCurrentFragment != FRAGMENT_PWD){
-                replaceFragment(new ChangePasswordFragment());
+                ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();
+                replaceFragment(changePasswordFragment, changePasswordFragment.CHANGE_PWD_FRAGMENT_NAME);
                 mCurrentFragment = FRAGMENT_PWD;
-            };
+            }
 
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-    private void replaceFragment(Fragment fragment){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.content_frame, fragment);
-        transaction.commit();
+    private void replaceFragment(Fragment fragment, String fragmentName){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.content_frame, fragment);
+        fragmentTransaction.addToBackStack(fragmentName);
+        fragmentTransaction.commit();
     }
-    public void showCardsFragment(DatabaseReference reference) {
-        if (mCurrentFragment != FRAGMENT_CARDS) {
-            replaceFragment(new CardsFragment(reference));
-            mCurrentFragment = FRAGMENT_CARDS;
-        }
-        mDrawerLayout.closeDrawer(GravityCompat.START);
-    }
-//    @Override
-//    public void onBackPressed() {
-//        if(mDrawerLayout.isDrawerOpen(GravityCompat.START)){
-//            mDrawerLayout.closeDrawer(GravityCompat.START);
-//        }
-//        if (doubleBackToExitPressedOnce) {
-//            super.onBackPressed();
-//            return;
-//        }
-//
-//        this.doubleBackToExitPressedOnce = true;
-//        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-//
-//        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                doubleBackToExitPressedOnce = false;
-//            }
-//        }, 2000);
-//    }
-//    boolean doubleBackToExitPressedOnce = false;
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -285,5 +272,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         mActivityResultLauncher.launch(Intent.createChooser(intent, "select picture"));
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
+        if (!(fragment instanceof IOnBackPressed) || !((IOnBackPressed) fragment).onBackPressed()) {
+            super.onBackPressed();
+        }
     }
 }

@@ -21,7 +21,7 @@ import team.loser.kanjiflashcard.R;
 
 
 public class ChangePasswordFragment extends Fragment {
-
+    public static final String CHANGE_PWD_FRAGMENT_NAME = ChangePasswordFragment.class.getName();
     private View mView;
     private EditText edNewPassword;
     private EditText edConfirmNewPassword;

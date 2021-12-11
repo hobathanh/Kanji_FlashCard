@@ -32,6 +32,7 @@ import team.loser.kanjiflashcard.MainActivity;
 import team.loser.kanjiflashcard.R;
 
 public class ProfileFragment extends Fragment {
+    public static final String PROFILE_FRAGMENT_NAME = ProfileFragment.class.getName();
     private  View mView;
     private ImageView imgAvt;
     private EditText edFullName, edEmail;
