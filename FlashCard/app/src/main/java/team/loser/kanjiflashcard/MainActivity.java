@@ -230,13 +230,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             finish();
 
         }
-        else if(id == R.id.nav_profile){
-            if(mCurrentFragment != FRAGMENT_PROFILE){
-                ProfileFragment profileFragment = new ProfileFragment();
-                replaceFragment(profileFragment, profileFragment.PROFILE_FRAGMENT_NAME);
-                mCurrentFragment = FRAGMENT_PROFILE;
-            }
-        }
         else if(id == R.id.nav_change_pwd){
             if(mCurrentFragment != FRAGMENT_PWD){
                 ChangePasswordFragment changePasswordFragment = new ChangePasswordFragment();

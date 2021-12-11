@@ -1,34 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_home"
-            android:title="@string/nav_home"
-            android:icon="@drawable/ic_baseline_home_24">
-        </item>
-        <item android:id="@+id/nav_feedback"
-            android:title="@string/nav_feedback"
-            android:icon="@drawable/ic_baseline_feedback_24">
-        </item>
-        <item android:id="@+id/nav_about"
-            android:title="@string/nav_about"
-            android:icon="@drawable/ic_baseline_info_24">
-        </item>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="@string/nav_home"></item>
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_baseline_feedback_24"
+            android:title="@string/nav_feedback"></item>
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:title="@string/nav_about"></item>
     </group>
-    <item android:title="Account">
+    <item android:title="Account"
+        android:checkable="false">
         <menu>
-            <item android:id="@+id/nav_profile"
-                android:title="@string/nav_profile"
-                android:icon="@drawable/ic_baseline_account_circle_24">
-            </item>
-            <item android:id="@+id/nav_change_pwd"
-                android:title="@string/nav_change_pwd"
-                android:icon="@drawable/ic_baseline_lock_reset_24">
-            </item>
-            <item android:id="@+id/nav_sign_out"
-                android:title="@string/nav_sign_out"
-                android:icon="@drawable/ic_baseline_logout_24">
-            </item>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/ic_baseline_account_circle_24"
+                    android:title="@string/nav_profile"></item>
+                <item
+                    android:id="@+id/nav_change_pwd"
+                    android:icon="@drawable/ic_baseline_lock_reset_24"
+                    android:title="@string/nav_change_pwd"></item>
+                <item
+                    android:id="@+id/nav_sign_out"
+                    android:icon="@drawable/ic_baseline_logout_24"
+                    android:title="@string/nav_sign_out"></item>
+            </group>
         </menu>
     </item>
+
+
 
 </menu>
