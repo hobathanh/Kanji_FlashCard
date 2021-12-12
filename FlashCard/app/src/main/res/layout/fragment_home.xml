@@ -20,17 +20,23 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
+                    android:id="@+id/tv_num_of_categories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#fff"
-                    android:text="All categories"
+                    android:text="ALL: "
                     android:textStyle="bold"
                     android:textSize="18dp"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcv_list_categories"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="8dp" />
+                    android:gravity="center">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rcv_list_categories"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="8dp" />
+                </LinearLayout>
             </LinearLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton

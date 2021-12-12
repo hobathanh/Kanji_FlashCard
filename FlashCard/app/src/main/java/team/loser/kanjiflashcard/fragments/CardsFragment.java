@@ -17,6 +17,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,11 +57,9 @@ public class CardsFragment extends Fragment {
     private List<Card> mListCards;
     private Button btnAddCard;
     private ProgressDialog loader;
-    private int numOfCards = 0;
+    private int numOfCards;
     private TextView tvNumOfCard;
-
-
-    private TextToSpeech mTTSJapanese, mTTSVietnamese;
+    private TextToSpeech mTTSJapanese;
 
     public static CardsFragment newInstance(DatabaseReference reference) {
         CardsFragment fragment = new CardsFragment(reference);
@@ -84,9 +83,9 @@ public class CardsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_cards, container, false);
         setControls();
+        getNumberOfCards();
         setEvents();
         getListCategoriesFromRealtimeDataBase();
-        getNumberOfCards();
         return mView;
     }
 
@@ -126,8 +125,6 @@ public class CardsFragment extends Fragment {
             public void onClickToSpeech(Card card) {
                 //TODO: text to speech
                 String text = card.getTerm();
-//                mTTSJapanese.setSpeechRate((float) 1.0);
-//                mTTSJapanese.setPitch((float) 1.0);
                 mTTSJapanese.speak(text, TextToSpeech.QUEUE_FLUSH, null,  ""  );
             }
         });
@@ -152,7 +149,6 @@ public class CardsFragment extends Fragment {
             }
         });
     }
-
     private void getNumberOfCards() {
         flashcardsReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -161,11 +157,16 @@ public class CardsFragment extends Fragment {
                 for (DataSnapshot card : snapshot.getChildren()) {
                     count++;
                 }
+                numOfCards = count;
                 if (count < 5) {
                     Toast.makeText(getContext(), "Please add at least 5 cards", Toast.LENGTH_SHORT).show();
-                    tvNumOfCard.setText(count+"");
                 }
-                tvNumOfCard.setText(count+"");
+                if (count == 0) {
+                    tvNumOfCard.setText("Add at least 5 cards to start learning");
+                }
+                else{
+                    tvNumOfCard.setText("ALL: "+ count);
+                }
             }
 
             @Override
@@ -184,7 +185,6 @@ public class CardsFragment extends Fragment {
                     mListCards.add(card);
                     mCardAdapter.notifyDataSetChanged();
                 }
-                numOfCards = mListCards.size();
             }
 
             @Override
@@ -198,7 +198,6 @@ public class CardsFragment extends Fragment {
                     }
                 }
                 mCardAdapter.notifyDataSetChanged();
-                numOfCards = mListCards.size();
             }
 
             @Override
@@ -212,7 +211,6 @@ public class CardsFragment extends Fragment {
                     }
                 }
                 mCardAdapter.notifyDataSetChanged();
-                numOfCards = mListCards.size();
             }
 
             @Override

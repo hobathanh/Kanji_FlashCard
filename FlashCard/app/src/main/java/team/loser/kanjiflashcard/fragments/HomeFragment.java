@@ -19,6 +19,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,8 +60,7 @@ public class HomeFragment extends Fragment implements IOnBackPressed {
     private View mView;
     private DatabaseReference userReference;
 
-
-
+    private TextView tvNumOfCategory;
     private RecyclerView rcvCategories;
     private CategoryAdapter mCategoryAdapter;
     private List<Category> mListCategories;
@@ -76,6 +76,7 @@ public class HomeFragment extends Fragment implements IOnBackPressed {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         setControls();
         setEvents();
+        getNumberOfCategory();
         getListCategoriesFromRealtimeDataBase();
         return mView;
     }
@@ -88,7 +89,28 @@ public class HomeFragment extends Fragment implements IOnBackPressed {
             }
         });
     }
+    private void getNumberOfCategory() {
+        userReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int count = 0;
+                for (DataSnapshot i : snapshot.getChildren()) {
+                    count++;
+                }
+                if (count == 0) {
+                    tvNumOfCategory.setText("Add some categories to start learning");
+                }
+                else{
+                    tvNumOfCategory.setText("ALL: "+ count);
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     private void addNewCategory() {
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -157,6 +179,7 @@ public class HomeFragment extends Fragment implements IOnBackPressed {
 
     private void setControls() {
         //recycler view
+        tvNumOfCategory = mView.findViewById(R.id.tv_num_of_categories);
         rcvCategories = mView.findViewById(R.id.rcv_list_categories);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         rcvCategories.setLayoutManager(linearLayoutManager);
@@ -231,7 +254,7 @@ public class HomeFragment extends Fragment implements IOnBackPressed {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Category category = snapshot.getValue(Category.class);
                 if(category != null){
-                    mListCategories.add(category);
+                    mListCategories.add(0,category);
                     mCategoryAdapter.notifyDataSetChanged();
                 }
             }

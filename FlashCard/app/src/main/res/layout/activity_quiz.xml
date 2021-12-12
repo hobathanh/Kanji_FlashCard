@@ -40,7 +40,7 @@
                 android:textColor="#fff"
                 android:textSize="35dp"
                 android:layout_gravity="center"
-                android:text="dhakjshdkjahsdkjaks"/>
+                android:text=""/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                 android:layout_weight="0"
                 android:text="1/10"
                 android:textColor="#fff"
-                android:textSize="30dp"
+                android:textSize="25dp"
                 android:textStyle="bold" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:gravity="center"
                 android:text="Question"
                 android:textColor="#fff"
-                android:textSize="60dp"
+                android:textSize="50dp"
                 android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"

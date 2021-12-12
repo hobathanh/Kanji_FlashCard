@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable-mdpi/button_rounded_white_transparent.xml" value="0.1515625" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable-mdpi/button_signin_gg.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable-v24/faded_background_custom.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2375" />
@@ -59,7 +60,7 @@
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_cards.xml" value="0.2359375" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_change_password.xml" value="0.264" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_register.xml" value="0.24010416666666667" />
