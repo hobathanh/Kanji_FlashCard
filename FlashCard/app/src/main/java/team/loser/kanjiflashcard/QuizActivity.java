@@ -66,10 +66,7 @@ public class QuizActivity extends AppCompatActivity {
     boolean isShuffleQues = false;
     private Question currentQues;
     private EasyFlipView easyFlipView;
-<<<<<<< HEAD
     private TextView tvPressToFlip;
-=======
->>>>>>> 7e9d7d118f47d385dde4135609afade1278a1b7d
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +92,8 @@ public class QuizActivity extends AppCompatActivity {
         mListOptions = new ArrayList<>();
         mListQuestions = new ArrayList<>();
         mListResultItems = new ArrayList<>();
-<<<<<<< HEAD
         tvPressToFlip = findViewById(R.id.tv_press_to_flip);
-=======
 
->>>>>>> 7e9d7d118f47d385dde4135609afade1278a1b7d
 
         Intent intent = getIntent();
         String categoryId = intent.getStringExtra("CATEGORY_ID");
@@ -273,16 +267,12 @@ public class QuizActivity extends AppCompatActivity {
                 if (isShuffleQues) {
                     Collections.shuffle(mListQuestions);
                     easyFlipView.setEnabled(false);
-<<<<<<< HEAD
                     tvPressToFlip.setVisibility(View.GONE);
                 }
                 else {
                     easyFlipView.setEnabled(true);
                     tvPressToFlip.setVisibility(View.VISIBLE);
-=======
->>>>>>> 7e9d7d118f47d385dde4135609afade1278a1b7d
                 }
-                else    easyFlipView.setEnabled(true);
                 setQuestion(questNum);
             }
 
