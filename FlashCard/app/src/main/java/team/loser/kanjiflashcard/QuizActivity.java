@@ -59,6 +59,7 @@ public class QuizActivity extends AppCompatActivity {
     private ArrayList<Question> mListQuestions;
     private ArrayList<String> mListOptions;
     private ArrayList<ResultItem> mListResultItems;
+    private ArrayList<Question> mListIncorrectQues;
     int questNum = 0;
     int correctAns = 0;
     boolean isFirstChoiceCorrect = true;
@@ -92,6 +93,7 @@ public class QuizActivity extends AppCompatActivity {
         mListOptions = new ArrayList<>();
         mListQuestions = new ArrayList<>();
         mListResultItems = new ArrayList<>();
+        mListIncorrectQues = new ArrayList<>();
         tvPressToFlip = findViewById(R.id.tv_press_to_flip);
 
 
@@ -164,7 +166,8 @@ public class QuizActivity extends AppCompatActivity {
             //wrong
             isFirstChoiceCorrect = false;
             if(currentQues!=null){
-                if(!mListResultItems.contains(currentQues)){
+                if(!mListIncorrectQues.contains(currentQues)){
+                    mListIncorrectQues.add(currentQues);
                     getResults(currentQues.getQuestion(), currentQues.getDefinition());
                 }
             }
