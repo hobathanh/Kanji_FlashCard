@@ -164,7 +164,9 @@ public class QuizActivity extends AppCompatActivity {
             //wrong
             isFirstChoiceCorrect = false;
             if(currentQues!=null){
-                getResults(currentQues.getQuestion(), currentQues.getDefinition());
+                if(!mListResultItems.contains(currentQues)){
+                    getResults(currentQues.getQuestion(), currentQues.getDefinition());
+                }
             }
             if (selectedOption == 0) {
                 btnOption1.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.incorrect));

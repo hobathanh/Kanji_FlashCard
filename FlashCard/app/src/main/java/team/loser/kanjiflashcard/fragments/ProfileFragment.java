@@ -6,6 +6,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,7 +36,7 @@ import team.loser.kanjiflashcard.R;
 public class ProfileFragment extends Fragment {
     public static final String PROFILE_FRAGMENT_NAME = ProfileFragment.class.getName();
     private  View mView;
-    private ImageView imgAvt;
+    public ImageView imgAvtProfile;
     private EditText edFullName, edEmail;
     private Button btnUpdate,btnUpdateEmail;
     private Uri mUri;
@@ -54,7 +55,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void setEvents() {
-        imgAvt.setOnClickListener(new View.OnClickListener() {
+        imgAvtProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onClickRequestPermission();
@@ -95,13 +96,13 @@ public class ProfileFragment extends Fragment {
 
         edFullName.setText(user.getDisplayName());
         edEmail.setText(user.getEmail());
-        Glide.with(getActivity()).load(user.getPhotoUrl()).error(R.drawable.avt_default).into(imgAvt);
+        Glide.with(getActivity()).load(user.getPhotoUrl()).error(R.drawable.avt_default).into(imgAvtProfile);
     }
 
     private void setControls() {
         loader = new ProgressDialog(getActivity());
         loader.setMessage("Updating...");
-        imgAvt = mView.findViewById(R.id.img_avt);
+        imgAvtProfile = (ImageView) mView.findViewById(R.id.img_avt);
         edFullName = mView.findViewById(R.id.ed_full_name);
         edEmail = mView.findViewById(R.id.ed_email);
         btnUpdate = mView.findViewById(R.id.btn_update);
@@ -109,8 +110,10 @@ public class ProfileFragment extends Fragment {
 
     }
     public void setBitmapImageView(Bitmap bitmapImage){
-        imgAvt.setImageBitmap(bitmapImage);
+        imgAvtProfile.setImageBitmap(bitmapImage);
+//        setUI();
     }
+
     public void setUriData(Uri uri){
         this.mUri = uri;
     }

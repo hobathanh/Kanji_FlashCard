@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setControls() {
         mNavigationView = findViewById(R.id.nav_view);
-        imgAvt = mNavigationView.getHeaderView(0).findViewById(R.id.imv_user_avt);
+        imgAvt = (ImageView) mNavigationView.getHeaderView(0).findViewById(R.id.imv_user_avt);
         tvUserEmail = mNavigationView.getHeaderView(0).findViewById(R.id.tv_user_email);
         tvUserName = mNavigationView.getHeaderView(0).findViewById(R.id.tv_user_name);
 
