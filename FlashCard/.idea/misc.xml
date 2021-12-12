@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable-mdpi/button_rounded_white_transparent.xml" value="0.1515625" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable-mdpi/button_signin_gg.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable-v24/faded_background_custom.xml" value="0.22592592592592592" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2375" />
@@ -54,27 +53,26 @@
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_category_detail.xml" value="0.2359375" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_custom.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_feedback.xml" value="0.4" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_resuilts.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_result_quiz.xml" value="0.264" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/dialog_results.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/edit_category_dialog.xml" value="0.176" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_about.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_blank.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_cards.xml" value="0.2359375" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_change_password.xml" value="0.264" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/fragment_register.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/layout.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/layout_header_nav.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/result_item.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/toobar_card_fragment.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/layout/toolbar_card.xml" value="0.25" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/menu/menu_nav.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/menu/popup_menu.xml" value="0.16197916666666667" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/menu/tool_bar_home.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/XUAN TRONG/Desktop/Android/Project/FlashCard/app/src/main/res/menu/toolbar_cards.xml" value="0.25" />
+        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/activity_quiz.xml" value="0.16077898550724637" />
+        <entry key="..\:/Users/hobat/AndroidStudioProjects/Kanji_FlashCard/FlashCard/app/src/main/res/layout/fragment_profile.xml" value="0.16077898550724637" />
       </map>
     </option>
   </component>

@@ -24,16 +24,18 @@
         android:id="@+id/ed_full_name"
         android:background="@drawable/edit_text_custom"
         android:layout_marginTop="20dp"/>
+
     <EditText
-        android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_custom"
+        android:id="@+id/ed_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:textColorHint="#99F4F4F4"
-        android:padding="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_text_custom"
+        android:enabled="false"
         android:hint="Email"
-        android:id="@+id/ed_email"/>
+        android:padding="15dp"
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4" />
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,15 +44,7 @@
         android:layout_marginTop="20dp"
         android:id="@+id/btn_update"
         android:textColor="#fff"
-
-        android:textSize="18dp"/>
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_custom"
-        android:text="Update email"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btn_update_email"
-        android:textColor="#fff"
-        android:textSize="18dp"/>/>
+        android:textSize="18dp"
+        />
+/>
 </LinearLayout>
