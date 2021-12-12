@@ -4,8 +4,9 @@ public class Question {
     private String question, option1, option2, option3, option4;
     private int correctAns;
     private String howToRead, Examples;
+    private String definition;
 
-    public Question(String question, String option1, String option2, String option3, String option4, int correctAns, String howToRead, String examples) {
+    public Question(String question, String option1, String option2, String option3, String option4, int correctAns, String howToRead, String examples, String definition) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -14,9 +15,18 @@ public class Question {
         this.correctAns = correctAns;
         this.howToRead = howToRead;
         Examples = examples;
+        this.definition = definition;
     }
 
     public Question() {
+    }
+
+    public String getDefinition() {
+        return definition;
+    }
+
+    public void setDefinition(String definition) {
+        this.definition = definition;
     }
 
     public String getHowToRead() {

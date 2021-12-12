@@ -11,6 +11,7 @@
     tools:context=".QuizActivity">
 
     <com.wajahatkarim3.easyflipview.EasyFlipView
+        android:id="@+id/efv_question"
         android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
