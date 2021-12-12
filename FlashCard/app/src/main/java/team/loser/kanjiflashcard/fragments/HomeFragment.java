@@ -176,7 +176,6 @@ public class HomeFragment extends Fragment implements IOnBackPressed {
         });
         dialog.show();
     }
-
     private void setControls() {
         //recycler view
         tvNumOfCategory = mView.findViewById(R.id.tv_num_of_categories);
@@ -212,7 +211,6 @@ public class HomeFragment extends Fragment implements IOnBackPressed {
                 intent.putExtra("IS_SHUFFLE", false);
                 startActivity(intent);
             }
-
             @Override
             public void onClickStartPractice(Category category) {
                 Intent intent = new Intent(getContext(), QuizActivity.class);
