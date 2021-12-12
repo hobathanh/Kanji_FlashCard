@@ -3,38 +3,52 @@ package team.loser.kanjiflashcard;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.wajahatkarim3.easyflipview.EasyFlipView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import team.loser.kanjiflashcard.adapters.ResultAdapter;
 import team.loser.kanjiflashcard.models.Card;
 import team.loser.kanjiflashcard.models.Question;
+import team.loser.kanjiflashcard.models.ResultItem;
+import team.loser.kanjiflashcard.utils.SpacingItemDecorator;
 
 public class QuizActivity extends AppCompatActivity {
     private TextView btnOption1, btnOption2, btnOption3, btnOption4, tvPronunciation, tvExamples;
@@ -44,11 +58,15 @@ public class QuizActivity extends AppCompatActivity {
     private ArrayList<Card> mListCards;
     private ArrayList<Question> mListQuestions;
     private ArrayList<String> mListOptions;
+    private ArrayList<ResultItem> mListResultItems;
     int questNum = 0;
     int correctAns = 0;
     boolean isFirstChoiceCorrect = true;
     boolean isReversed = false;
     boolean isShuffleQues = false;
+    private Question currentQues;
+    private EasyFlipView easyFlipView;
+    private TextView tvPressToFlip;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,10 +87,12 @@ public class QuizActivity extends AppCompatActivity {
         tvQuestion = findViewById(R.id.tv_question);
         tvPronunciation = findViewById(R.id.tv_howtoread_quiz);
         tvExamples = findViewById(R.id.tv_examples_quiz);
-
+        easyFlipView = findViewById(R.id.efv_question);
         mListCards = new ArrayList<>();
         mListOptions = new ArrayList<>();
         mListQuestions = new ArrayList<>();
+        mListResultItems = new ArrayList<>();
+        tvPressToFlip = findViewById(R.id.tv_press_to_flip);
 
         Intent intent = getIntent();
         String categoryId = intent.getStringExtra("CATEGORY_ID");
@@ -142,6 +162,9 @@ public class QuizActivity extends AppCompatActivity {
         } else {
             //wrong
             isFirstChoiceCorrect = false;
+            if(currentQues!=null){
+                getResults(currentQues.getQuestion(), currentQues.getDefinition());
+            }
             if (selectedOption == 0) {
                 btnOption1.setBackgroundTintList(ContextCompat.getColorStateList(QuizActivity.this, R.color.incorrect));
             }
@@ -194,7 +217,34 @@ public class QuizActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            btnViewResult.setOnClickListener(view -> {
+                final Dialog resultsDialog = new Dialog(QuizActivity.this);
+                resultsDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                resultsDialog.setContentView(R.layout.dialog_results);
+                Window window = resultsDialog.getWindow();
+                if(window == null){
+                    return;
+                }
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                WindowManager.LayoutParams windowAttributes = window.getAttributes();
+                windowAttributes.gravity = Gravity.CENTER;
+                window.setAttributes(windowAttributes);
+                resultsDialog.setCancelable(true);
 
+                Button btnBack = resultsDialog.findViewById(R.id.btn_back_result_dialog);
+                RecyclerView rcvResults = resultsDialog.findViewById(R.id.rcv_results_dialog);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(QuizActivity.this);
+                rcvResults.setLayoutManager(linearLayoutManager);
+                SpacingItemDecorator itemDecorator = new SpacingItemDecorator(10, true, false);
+                rcvResults.addItemDecoration(itemDecorator);
+
+                ResultAdapter resultAdapter = new ResultAdapter(mListResultItems);
+                rcvResults.setAdapter(resultAdapter);
+
+                btnBack.setOnClickListener(view1 -> resultsDialog.dismiss());
+                resultsDialog.show();
+            });
             dialog.show();
         }
     }
@@ -215,6 +265,12 @@ public class QuizActivity extends AppCompatActivity {
                 mListQuestions = getQuestionListForQuiz(isReversed);
                 if (isShuffleQues) {
                     Collections.shuffle(mListQuestions);
+                    easyFlipView.setEnabled(false);
+                    tvPressToFlip.setVisibility(View.GONE);
+                }
+                else {
+                    easyFlipView.setEnabled(true);
+                    tvPressToFlip.setVisibility(View.VISIBLE);
                 }
                 setQuestion(questNum);
             }
@@ -235,6 +291,7 @@ public class QuizActivity extends AppCompatActivity {
         tvQuesIndex.setText(i + 1 + "/" + mListQuestions.size());
         tvPronunciation.setText(mListQuestions.get(i).getHowToRead());
         tvExamples.setText(mListQuestions.get(i).getExamples());
+        currentQues = mListQuestions.get(i); // get current question
     }
 
     private ArrayList<Question> getQuestionListForQuiz(boolean reversed) {
@@ -261,6 +318,7 @@ public class QuizActivity extends AppCompatActivity {
     private Question makeOneQuestion(String ques, String ans, String read, String ex, ArrayList<String> allOptions) {
         Question resQuestion = new Question();
         resQuestion.setQuestion(ques); // question
+        resQuestion.setDefinition(ans);
         resQuestion.setHowToRead(read);
         resQuestion.setExamples(ex);
         String[] options = new String[4];
@@ -311,6 +369,10 @@ public class QuizActivity extends AppCompatActivity {
             }
         }
         return numbers;
+    }
+    private void getResults(String term, String def){
+        ResultItem resultItem = new ResultItem(term, def);
+        mListResultItems.add(resultItem);
     }
 
 }

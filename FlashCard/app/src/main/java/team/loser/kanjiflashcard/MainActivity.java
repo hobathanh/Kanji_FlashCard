@@ -1,7 +1,5 @@
 package team.loser.kanjiflashcard;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -21,11 +19,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.MediaStore;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
@@ -49,7 +44,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import team.loser.kanjiflashcard.fragments.AboutFragment;
 import team.loser.kanjiflashcard.fragments.CardsFragment;
 import team.loser.kanjiflashcard.fragments.ChangePasswordFragment;
 import team.loser.kanjiflashcard.fragments.HomeFragment;
@@ -65,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final int FRAGMENT_PROFILE = 3;
     private static final int FRAGMENT_PWD = 4;
     private static final int FRAGMENT_CARDS = 5;
+    private static final int FRAGMENT_SHARE = 6;
 
     private FragmentTransaction fragmentTransaction;
     final private ProfileFragment mProfileFragment = new ProfileFragment();
@@ -209,11 +204,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         else if(id == R.id.nav_about){
             if(mCurrentFragment != FRAGMENT_ABOUT){
-                AboutFragment aboutFragment = new AboutFragment();
-                replaceFragment(aboutFragment, aboutFragment.ABOUT_FRAGMENT_NAME);
                 mCurrentFragment = FRAGMENT_ABOUT;
             }
-
+        }
+        else if(id == R.id.nav_sharing){
+            if(mCurrentFragment!= FRAGMENT_SHARE){
+                mCurrentFragment = FRAGMENT_SHARE;
+            }
         }
         else if(id == R.id.nav_profile){
             if(mCurrentFragment != FRAGMENT_PROFILE){
@@ -269,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-
+        mCurrentFragment = FRAGMENT_CARDS;
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
         if (!(fragment instanceof IOnBackPressed) || !((IOnBackPressed) fragment).onBackPressed()) {
             super.onBackPressed();

@@ -6,7 +6,8 @@
     android:orientation="vertical"
     android:padding="20dp"
     android:gravity="center"
-    android:usesCleartextTraffic="true">
+    android:usesCleartextTraffic="true"
+    android:clickable="false">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="150dp"

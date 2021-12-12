@@ -106,7 +106,7 @@
                     android:paddingBottom="5dp"
                     android:text="Category name"
                     android:textColor="#5f0a87"
-                    android:textSize="26dp"
+                    android:textSize="24dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -116,30 +116,14 @@
                 android:orientation="vertical"
                 android:layout_marginLeft="5dp">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:layout_marginLeft="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Description:"
-                        android:textColor="#000"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/tv_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Description here"
-                        android:textColor="#000"
-                        android:textSize="15dp"
-                        android:layout_weight="2"/>
-                </LinearLayout>
-
+                    android:text="Description here"
+                    android:textColor="#000"
+                    android:textSize="15dp"
+                    android:layout_marginLeft="10dp"/>
                 <TextView
                     android:id="@+id/tv_cards_or_card"
                     android:layout_width="match_parent"

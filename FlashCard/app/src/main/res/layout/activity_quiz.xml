@@ -11,6 +11,7 @@
     tools:context=".QuizActivity">
 
     <com.wajahatkarim3.easyflipview.EasyFlipView
+        android:id="@+id/efv_question"
         android:layout_weight="5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,6 +91,7 @@
                 android:textSize="50dp"
                 android:textStyle="bold" />
             <TextView
+                android:id="@+id/tv_press_to_flip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Press to see more information"
