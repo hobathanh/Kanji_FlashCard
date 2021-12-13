@@ -38,7 +38,7 @@ public class ProfileFragment extends Fragment {
     private  View mView;
     public ImageView imgAvtProfile;
     private EditText edFullName, edEmail;
-    private Button btnUpdate,btnUpdateEmail;
+    private Button btnUpdate;
     private Uri mUri;
     private MainActivity mMainActivity;
     private ProgressDialog loader;
@@ -65,12 +65,6 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 onUpdateProfile();
-            }
-        });
-        btnUpdateEmail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onUpdateEmail();
             }
         });
     }
@@ -105,13 +99,13 @@ public class ProfileFragment extends Fragment {
         imgAvtProfile = (ImageView) mView.findViewById(R.id.img_avt);
         edFullName = mView.findViewById(R.id.ed_full_name);
         edEmail = mView.findViewById(R.id.ed_email);
+
         btnUpdate = mView.findViewById(R.id.btn_update);
-        btnUpdateEmail = mView.findViewById(R.id.btn_update_email);
 
     }
     public void setBitmapImageView(Bitmap bitmapImage){
         imgAvtProfile.setImageBitmap(bitmapImage);
-//        setUI();
+
     }
 
     public void setUriData(Uri uri){
@@ -134,23 +128,6 @@ public class ProfileFragment extends Fragment {
                         loader.dismiss();
                         if (task.isSuccessful()) {
                             Toast.makeText(getActivity(), "update profile successful", Toast.LENGTH_SHORT).show();
-                            mMainActivity.showUserInfoInMenuLeft();
-                        }
-                    }
-                });
-    }
-    private void onUpdateEmail(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        loader.show();
-        if(user == null) return;
-        String strNewEmail = edEmail.getText().toString().trim();
-        user.updateEmail(strNewEmail)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        loader.dismiss();
-                        if (task.isSuccessful()) {
-                            Toast.makeText(getActivity(),"Update email successful",Toast.LENGTH_SHORT).show();
                             mMainActivity.showUserInfoInMenuLeft();
                         }
                     }

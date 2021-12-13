@@ -13,43 +13,40 @@
         android:layout_height="150dp"
         android:src="@drawable/avt_default"
         android:id="@+id/img_avt"/>
+
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:hint="Full name"
-        android:textColor="#fff"
-        android:textColorHint="#99F4F4F4"
         android:id="@+id/ed_full_name"
-        android:background="@drawable/edit_text_custom"
-        android:layout_marginTop="20dp"/>
-    <EditText
-        android:layout_marginTop="20dp"
-        android:background="@drawable/edit_text_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#fff"
-        android:textColorHint="#99F4F4F4"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/edit_text_custom"
+        android:hint="Full name"
         android:padding="15dp"
-        android:hint="Email"
-        android:id="@+id/ed_email"/>
-    <androidx.appcompat.widget.AppCompatButton
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4" />
+
+    <EditText
+        android:id="@+id/ed_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edit_text_custom"
+
+        android:enabled="false"
+
+        android:hint="Email"
+        android:padding="15dp"
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:background="@drawable/button_custom"
         android:text="Update profile"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btn_update"
         android:textColor="#fff"
-
-        android:textSize="18dp"/>
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/button_custom"
-        android:text="Update email"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btn_update_email"
-        android:textColor="#fff"
-        android:textSize="18dp"/>/>
+        android:textSize="18dp" />
+    />
 </LinearLayout>
