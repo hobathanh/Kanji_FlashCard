@@ -13,37 +13,40 @@
         android:layout_height="150dp"
         android:src="@drawable/avt_default"
         android:id="@+id/img_avt"/>
+
     <EditText
+        android:id="@+id/ed_full_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:hint="Full name"
-        android:textColor="#fff"
-        android:textColorHint="#99F4F4F4"
-        android:id="@+id/ed_full_name"
+        android:layout_marginTop="25dp"
         android:background="@drawable/edit_text_custom"
-        android:layout_marginTop="20dp"/>
+        android:hint="Full name"
+        android:padding="15dp"
+        android:textColor="#fff"
+        android:textColorHint="#99F4F4F4" />
 
     <EditText
         android:id="@+id/ed_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/edit_text_custom"
+
         android:enabled="false"
+
         android:hint="Email"
         android:padding="15dp"
         android:textColor="#fff"
         android:textColorHint="#99F4F4F4" />
+
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
         android:background="@drawable/button_custom"
         android:text="Update profile"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btn_update"
         android:textColor="#fff"
-        android:textSize="18dp"
-        />
-/>
+        android:textSize="18dp" />
+    />
 </LinearLayout>

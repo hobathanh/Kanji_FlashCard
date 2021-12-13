@@ -99,13 +99,13 @@ public class ProfileFragment extends Fragment {
         imgAvtProfile = (ImageView) mView.findViewById(R.id.img_avt);
         edFullName = mView.findViewById(R.id.ed_full_name);
         edEmail = mView.findViewById(R.id.ed_email);
-        btnUpdate = mView.findViewById(R.id.btn_update);
 
+        btnUpdate = mView.findViewById(R.id.btn_update);
 
     }
     public void setBitmapImageView(Bitmap bitmapImage){
         imgAvtProfile.setImageBitmap(bitmapImage);
-//        setUI();
+
     }
 
     public void setUriData(Uri uri){
